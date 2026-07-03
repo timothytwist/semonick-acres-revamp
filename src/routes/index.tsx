@@ -41,14 +41,14 @@ const why = [
   { title: "Family Operated", body: "We're a family business, not a corporation. When you call, you talk to the people doing the work — no runaround, no middlemen." },
   { title: "Consistent Quality", body: "Every load is screened to ¾\" so you get the same clean, workable material every time. No surprises when the truck arrives on site." },
   { title: "Reliable Scheduling", body: "We deliver Monday through Friday. Call ahead and we'll coordinate timing to keep your project on track." },
-  { title: "Straight Pricing", body: "$45 a yard delivered, 3-yard minimum. No hidden fees. Large orders and extended delivery are negotiated honestly over the phone." },
+  { title: "Straight Pricing", body: "$45 a yard. Call for a delivery quote. 3-yard minimum. No hidden fees. Large orders and extended delivery are negotiated honestly over the phone." },
   { title: "Local Knowledge", body: "We know Sullivan, Ulster, and Orange Counties. Our drivers understand local roads, job sites, and what contractors in this region actually need." },
   { title: "Approved Materials", body: "Our septic fill meets state approval standards. When your project requires certified materials, we have you covered without the hassle." },
 ];
 
 const faqs = [
   ["What is the minimum order for delivery?", "The minimum delivery order is 3 cubic yards. This applies to all delivered material within our standard 25-mile service area from Ellenville, NY."],
-  ["How much does delivery cost?", "Topsoil is $45 per cubic yard, delivered. That price includes delivery within 25 miles of Ellenville. For larger orders or extended delivery distances, call us — we work it out on a per-project basis."],
+  ["How much does delivery cost?", "Topsoil is $45 a yard. Call for a delivery quote. Within 25 miles of Ellenville. For larger orders or extended delivery distances, call us — we work it out on a per-project basis."],
   ["What counties do you serve?", "We primarily serve Sullivan, Ulster, and Orange Counties within 25 miles of Ellenville, NY. For projects outside that range, call us — we can often accommodate with advance planning."],
   ["What days do you deliver?", "Deliveries run Monday through Friday. Call ahead to schedule your delivery time and we'll work to fit your project timeline."],
   ["Do you offer wholesale pricing for contractors?", "Yes. Contractors, developers, and landscapers with ongoing or large-volume needs should call us directly to discuss wholesale pricing. We have relationships with regional contractors and are happy to work out volume arrangements."],
@@ -170,7 +170,7 @@ function Index() {
       <div className="border-y border-border bg-white">
         <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-6 px-6 py-6 font-sans">
           {[
-            ["$45", "Per Yard Delivered"],
+            ["$45 Yard", "Call for Delivery Quote"],
             ["3 Yd Min.", "Delivery Minimum"],
             ["25 Miles", "Radius from Ellenville"],
             ["Mon–Fri", "Delivery Days"],
@@ -290,7 +290,7 @@ function Index() {
         <div className="mx-auto max-w-[1100px] px-6">
           <SectionLabel>Straight Pricing</SectionLabel>
           <h2 className="font-serif text-4xl font-bold md:text-5xl">
-            <em className="not-italic text-primary">$45</em> per yard, delivered
+            <em className="not-italic text-primary">$45</em> Yard — call for Delivery Quote
           </h2>
           <p className="mt-4 max-w-2xl font-sans text-muted-foreground">
             3-yard minimum. Within 25 miles of Ellenville, NY. Bulk and contractor pricing negotiated over the phone.
@@ -298,7 +298,7 @@ function Index() {
 
           <div className="mt-10 grid grid-cols-2 gap-[2px] bg-border md:grid-cols-4">
             {[
-              ["$45", "Per cubic yard"],
+              ["$45", "Yard — call for quote"],
               ["3 Yd", "Minimum order"],
               ["25 mi", "Standard radius"],
               ["Mon–Fri", "Delivery days"],
