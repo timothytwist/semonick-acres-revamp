@@ -133,26 +133,18 @@ function Index() {
 
       {/* About + image split */}
       <section id="about" className="bg-muted">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-24 md:grid-cols-2 md:items-center">
-          <img
-            src={soilHands}
-            alt="A pair of hands cupping a mound of dark, crumbly screened topsoil"
-            loading="lazy"
-            width={1280}
-            height={896}
-            className="aspect-[4/3] w-full rounded-lg object-cover shadow-lg"
-          />
+        <div className="mx-auto max-w-4xl px-6 py-24 text-center">
           <div>
             <p className="text-sm font-semibold uppercase tracking-widest text-accent">Our Farm</p>
             <h2 className="mt-2 font-serif text-4xl font-bold md:text-5xl">Three generations. One pile at a time.</h2>
-            <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               The Semonick family has been working these fields since 1978. What started as a small hay operation
               has grown into the region's most trusted source for premium topsoil, mulch, and garden materials.
             </p>
-            <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               We still screen every load ourselves, and we still answer the phone by name.
             </p>
-            <dl className="mt-8 grid grid-cols-2 gap-6 border-t border-border pt-8">
+            <dl className="mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-6 border-t border-border pt-8 text-left">
               <div>
                 <dt className="text-xs uppercase tracking-widest text-muted-foreground">Screened on-site</dt>
                 <dd className="mt-1 font-serif text-lg font-semibold">Every yard</dd>
@@ -168,10 +160,13 @@ function Index() {
 
       {/* Delivery */}
       <section id="delivery" className="mx-auto max-w-7xl px-6 py-24">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
-          <div className="order-2 md:order-1">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-start">
+          <div>
             <p className="text-sm font-semibold uppercase tracking-widest text-accent">Delivery</p>
             <h2 className="mt-2 font-serif text-4xl font-bold md:text-5xl">Same-week delivery, right to your driveway.</h2>
+            <p className="mt-6 text-muted-foreground">
+              Tell us the yards, the address, and the day — we'll bring the load.
+            </p>
             <ul className="mt-8 space-y-4">
               {[
                 ["Bulk delivery", "1 to 20 yards per load, dumped where you need it."],
@@ -188,28 +183,35 @@ function Index() {
               ))}
             </ul>
           </div>
-          <img
-            src={deliveryTruck}
-            alt="Dump truck loaded with fresh topsoil parked in front of a red barn"
-            loading="lazy"
-            width={1280}
-            height={896}
-            className="order-1 aspect-[4/3] w-full rounded-lg object-cover shadow-lg md:order-2"
-          />
+          <div className="rounded-lg border border-border bg-card p-8">
+            <h3 className="font-serif text-2xl font-bold">Delivery zones</h3>
+            <p className="mt-2 text-sm text-muted-foreground">Flat-rate delivery based on distance from the farm.</p>
+            <ul className="mt-6 divide-y divide-border">
+              {[
+                ["0 – 10 miles", "$45"],
+                ["10 – 20 miles", "$75"],
+                ["20 – 35 miles", "$120"],
+                ["35+ miles", "Call for quote"],
+              ].map(([zone, price]) => (
+                <li key={zone} className="flex items-center justify-between py-4">
+                  <span className="font-medium">{zone}</span>
+                  <span className="font-serif text-lg font-bold text-primary">{price}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
-      {/* Yard photo band */}
+      {/* Yard photo band — reuses hero photo */}
       <section className="relative h-[420px] w-full overflow-hidden">
         <img
-          src={mulchPiles}
-          alt="Aerial view of mulch and topsoil piles at Semonick Acres yard"
+          src={heroAsset.url}
+          alt="Topsoil pouring from the conveyor at Semonick Acres yard"
           loading="lazy"
-          width={1280}
-          height={896}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 to-black/20" />
         <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6">
           <div className="max-w-xl text-white">
             <h2 className="font-serif text-4xl font-bold leading-tight md:text-5xl">
