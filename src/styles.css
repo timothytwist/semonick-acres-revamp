@@ -63,26 +63,28 @@
 
 :root {
   --radius: 0.375rem;
-  /* Wholesale palette: red, white, black. */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.14 0 0);
+  /* Wholesale palette from source: red #C0302A, charcoal #1C1C1C, cream #F2EDE6, off-white #F9F6F3, straw #D4B878, field green #4A5C38. */
+  --background: oklch(0.975 0.005 80);
+  --foreground: oklch(0.22 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.14 0 0);
+  --card-foreground: oklch(0.22 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.14 0 0);
-  --primary: oklch(0.14 0 0);
+  --popover-foreground: oklch(0.22 0 0);
+  --primary: oklch(0.55 0.19 27);        /* red */
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.14 0 0);
+  --primary-dark: oklch(0.4 0.17 27);
+  --secondary: oklch(0.22 0 0);          /* charcoal */
   --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.4 0 0);
-  --accent: oklch(0.55 0.22 28);
-  --accent-foreground: oklch(1 0 0);
+  --muted: oklch(0.94 0.01 75);          /* cream */
+  --muted-foreground: oklch(0.4 0.02 60);
+  --accent: oklch(0.79 0.09 85);         /* straw */
+  --accent-foreground: oklch(0.22 0 0);
+  --field: oklch(0.45 0.05 130);         /* field green tag */
   --destructive: oklch(0.55 0.22 28);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.9 0 0);
-  --input: oklch(0.9 0 0);
-  --ring: oklch(0.55 0.22 28);
+  --border: oklch(0.88 0.008 75);
+  --input: oklch(0.88 0.008 75);
+  --ring: oklch(0.55 0.19 27);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -100,7 +102,9 @@
 
 @theme inline {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --color-primary-dark: var(--primary-dark);
+  --color-field: var(--field);
 }
 
 @utility text-balance {

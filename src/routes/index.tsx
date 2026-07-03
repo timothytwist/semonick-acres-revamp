@@ -5,289 +5,532 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+import { useState } from "react";
+
+const PHONE = "845-551-7345";
+const TEL = "+18455517345";
+
 const products = [
   {
-    name: "Screened Topsoil",
-    price: "$28",
-    unit: "per cubic yard",
-    desc: "Triple-screened, dark, and rock-free. Ready to spread for lawns, gardens, and grading.",
+    tag: "Best Seller",
+    title: "Organic Screened Topsoil",
+    body: "Screened to ¾\" for a clean, consistent material. Suitable for lawns, gardens, fill, and large-scale grading. Tested and proven across hundreds of local projects.",
   },
   {
-    name: "Premium Hardwood Mulch",
-    price: "$34",
-    unit: "per cubic yard",
-    desc: "Aged and double-ground for a rich, uniform color that holds through the season.",
+    tag: "Available",
+    title: "Loam",
+    body: "Quality loam for a wide range of construction and landscape applications. Call for pricing and to confirm current availability.",
   },
   {
-    name: "Garden Compost Blend",
-    price: "$38",
-    unit: "per cubic yard",
-    desc: "Nutrient-dense compost cut with topsoil — ideal for raised beds and new plantings.",
-  },
-  {
-    name: "River Stone & Gravel",
-    price: "$46",
-    unit: "per cubic yard",
-    desc: "Clean, washed aggregate for drainage, driveways, and decorative borders.",
+    tag: "Approved",
+    title: "Approved Septic Fill",
+    body: "Fill material meeting state approval standards for septic system use. Proper drainage characteristics for compliant installation.",
   },
 ];
 
-function Index() {
+const services = [
+  { title: "Organic Screened Topsoil", body: "Premium topsoil screened to ¾\" for consistent quality. Ideal for residential lawns, grading, raised beds, and large-scale land improvement projects.", badge: "Screened to ¾\"" },
+  { title: "Loam", body: "Quality loam for construction sites, landscape grading, and agricultural use. Contact us for volume pricing and availability." },
+  { title: "Approved Septic Fill", body: "State-approved fill material for septic system installations. Meets regulatory requirements for proper drainage and compaction.", badge: "Approved Material" },
+  { title: "Septic System Installation", body: "Full septic system installation by an experienced family crew. We handle the complete job from planning through completion.", badge: "Full Service" },
+  { title: "Driveway Installation", body: "Professional driveway installation and grading. From prep work to final surface, we build driveways that last. Call for a quote.", badge: "Full Service" },
+  { title: "Bulk Wholesale Pricing", body: "Contractors, developers, and landscapers — volume pricing available for large orders. Call to discuss your project and get a custom quote.", badge: "Volume Pricing Available" },
+];
+
+const why = [
+  { title: "Family Operated", body: "We're a family business, not a corporation. When you call, you talk to the people doing the work — no runaround, no middlemen." },
+  { title: "Consistent Quality", body: "Every load is screened to ¾\" so you get the same clean, workable material every time. No surprises when the truck arrives on site." },
+  { title: "Reliable Scheduling", body: "We deliver Monday through Friday. Call ahead and we'll coordinate timing to keep your project on track." },
+  { title: "Straight Pricing", body: "$45 a yard delivered, 3-yard minimum. No hidden fees. Large orders and extended delivery are negotiated honestly over the phone." },
+  { title: "Local Knowledge", body: "We know Sullivan, Ulster, and Orange Counties. Our drivers understand local roads, job sites, and what contractors in this region actually need." },
+  { title: "Approved Materials", body: "Our septic fill meets state approval standards. When your project requires certified materials, we have you covered without the hassle." },
+];
+
+const faqs = [
+  ["What is the minimum order for delivery?", "The minimum delivery order is 3 cubic yards. This applies to all delivered material within our standard 25-mile service area from Ellenville, NY."],
+  ["How much does delivery cost?", "Topsoil is $45 per cubic yard, delivered. That price includes delivery within 25 miles of Ellenville. For larger orders or extended delivery distances, call us — we work it out on a per-project basis."],
+  ["What counties do you serve?", "We primarily serve Sullivan, Ulster, and Orange Counties within 25 miles of Ellenville, NY. For projects outside that range, call us — we can often accommodate with advance planning."],
+  ["What days do you deliver?", "Deliveries run Monday through Friday. Call ahead to schedule your delivery time and we'll work to fit your project timeline."],
+  ["Do you offer wholesale pricing for contractors?", "Yes. Contractors, developers, and landscapers with ongoing or large-volume needs should call us directly to discuss wholesale pricing. We have relationships with regional contractors and are happy to work out volume arrangements."],
+  ["Is your topsoil screened?", "Yes. Our organic topsoil is screened to ¾\", giving you clean, consistent material free of large debris. It's suitable for lawns, gardens, grading, fill, and construction applications."],
+  ["Do you install septic systems?", "Yes. In addition to supplying approved septic fill, we offer full septic system installation. Call to discuss your project and get a quote."],
+  ["Can you install driveways?", "Yes. We handle driveway installation and grading from prep through final surface. Call for a quote on your project."],
+];
+
+function PhoneIcon({ className }: { className?: string }) {
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
-      {/* Nav */}
-      <header className="absolute top-0 left-0 right-0 z-20">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-          <a href="#" className="flex items-center gap-2 text-primary-foreground">
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-accent font-serif text-lg font-bold text-accent-foreground">S</span>
-            <span className="font-serif text-xl font-bold tracking-tight">Semonick Acres</span>
-          </a>
-          <div className="hidden items-center gap-8 text-sm font-medium text-primary-foreground/90 md:flex">
-            <a href="#products" className="hover:text-accent">Products</a>
-            <a href="#about" className="hover:text-accent">Our Farm</a>
-            <a href="#delivery" className="hover:text-accent">Delivery</a>
-            <a href="#contact" className="hover:text-accent">Contact</a>
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
+    </svg>
+  );
+}
+
+function SectionLabel({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
+  return (
+    <div className={`mb-3 font-sans text-xs font-bold uppercase tracking-[0.2em] ${light ? "text-[color:var(--accent)]" : "text-[color:var(--primary)]"}`}>
+      {children}
+    </div>
+  );
+}
+
+function Index() {
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [submitted, setSubmitted] = useState(false);
+
+  return (
+    <div className="min-h-screen bg-background font-serif text-foreground">
+      {/* TOP BAR */}
+      <div className="bg-primary px-6 py-2 text-center font-sans text-[0.82rem] tracking-wider text-primary-foreground">
+        Mon–Fri Delivery&nbsp;&nbsp;|&nbsp;&nbsp;Minimum 3 Yards&nbsp;&nbsp;|&nbsp;&nbsp;25-Mile Radius from Ellenville, NY&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href={`tel:${TEL}`} className="font-bold text-primary-foreground underline-offset-2 hover:underline">Call Now: {PHONE}</a>
+      </div>
+
+      {/* NAV */}
+      <nav className="sticky top-0 z-50 border-b-[3px] border-primary bg-[color:var(--secondary)] px-6 shadow-lg">
+        <div className="mx-auto flex h-16 max-w-[1100px] items-center justify-between">
+          <div className="whitespace-nowrap font-sans text-[1.05rem] font-bold uppercase tracking-[0.04em] text-white">
+            Semonick <span className="text-[color:var(--accent)]">Acres</span> Farm
           </div>
-          <a href="#contact" className="rounded-full bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground shadow-sm transition hover:brightness-95">
-            Order Now
-          </a>
-        </nav>
-      </header>
-
-      {/* Hero */}
-      <section className="relative h-[92vh] min-h-[640px] w-full overflow-hidden">
-        <img
-          src={heroAsset.url}
-          alt="Conveyor pouring rich topsoil into a tall pile at Semonick Acres"
-          className="absolute inset-0 h-full w-full object-cover"
-          width={1920}
-          height={550}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
-        <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-20 md:pb-28">
-          <span className="mb-4 inline-flex w-fit items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-widest text-white backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" /> Family Farm · Since 1978
-          </span>
-          <h1 className="max-w-3xl font-serif text-5xl font-bold leading-[1.05] text-white text-balance md:text-7xl">
-            The good dirt your garden has been waiting for.
-          </h1>
-          <p className="mt-6 max-w-xl text-lg text-white/85">
-            Screened topsoil, aged mulch, and garden blends — loaded fresh from the farm and delivered to your driveway.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#products" className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground shadow-lg transition hover:brightness-95">
-              Browse products
-            </a>
-            <a href="#contact" className="rounded-full border border-white/40 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/15">
-              Get a delivery quote →
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats strip */}
-      <section className="border-b border-border bg-primary text-primary-foreground">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-6 py-10 md:grid-cols-4">
-          {[
-            ["45+", "Years family-run"],
-            ["12k", "Yards delivered / yr"],
-            ["3", "County service area"],
-            ["6", "Days a week open"],
-          ].map(([n, l]) => (
-            <div key={l}>
-              <div className="font-serif text-4xl font-bold text-accent">{n}</div>
-              <div className="mt-1 text-sm text-primary-foreground/70">{l}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Products */}
-      <section id="products" className="mx-auto max-w-7xl px-6 py-24">
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-widest text-accent">The Yard</p>
-            <h2 className="mt-2 font-serif text-4xl font-bold md:text-5xl">Sold by the yard, honest by the handful.</h2>
-          </div>
-          <p className="max-w-md text-muted-foreground">
-            Everything we sell is screened, tested, and piled up right here on the farm. No middlemen, no mystery mixes.
-          </p>
-        </div>
-
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {products.map((p) => (
-            <div key={p.name} className="group flex flex-col rounded-lg border border-border bg-card p-6 transition hover:border-accent hover:shadow-md">
-              <div className="flex items-baseline justify-between">
-                <span className="font-serif text-3xl font-bold text-primary">{p.price}</span>
-                <span className="text-xs uppercase tracking-wider text-muted-foreground">{p.unit}</span>
-              </div>
-              <h3 className="mt-4 font-serif text-xl font-bold">{p.name}</h3>
-              <p className="mt-2 flex-1 text-sm text-muted-foreground">{p.desc}</p>
-              <a href="#contact" className="mt-6 text-sm font-semibold text-primary transition group-hover:text-accent-foreground">
-                Reserve a load →
+          <ul className="hidden items-center gap-6 md:flex">
+            {[
+              ["Services", "#services"],
+              ["Pricing", "#delivery"],
+              ["Coverage", "#coverage"],
+              ["FAQ", "#faq"],
+              ["Contact", "#contact"],
+            ].map(([label, href]) => (
+              <li key={label}>
+                <a href={href} className="font-sans text-[0.82rem] uppercase tracking-[0.06em] text-[color:var(--muted)] transition hover:text-[color:var(--accent)]">
+                  {label}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a href={`tel:${TEL}`} className="inline-flex items-center gap-2 border border-primary bg-primary px-3 py-1.5 font-sans text-[0.82rem] font-bold uppercase tracking-[0.04em] text-primary-foreground transition hover:bg-[color:var(--primary-dark)]">
+                <PhoneIcon className="h-3.5 w-3.5" />
+                {PHONE}
               </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      {/* HERO */}
+      <section className="bg-[color:var(--secondary)] py-16 text-white md:py-20">
+        <div className="mx-auto grid max-w-[1100px] grid-cols-1 items-center gap-12 px-6 md:grid-cols-2">
+          <div>
+            <div className="mb-4 font-sans text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--accent)]">
+              Family Operated · Ellenville, NY
+            </div>
+            <h1 className="font-serif text-[clamp(2.4rem,5vw,3.75rem)] font-bold leading-[1.05] text-white">
+              Premium <em className="not-italic text-[color:var(--primary)]">Topsoil</em>
+              <br />
+              Wholesale Direct
+            </h1>
+            <p className="mt-6 max-w-xl font-sans text-base leading-relaxed text-white/75">
+              Organic screened topsoil, approved septic fill, and loam — delivered to Sullivan, Ulster, and Orange Counties. Built for contractors, landscapers, and developers who need volume they can count on.
+            </p>
+            <a href={`tel:${TEL}`} className="mt-8 inline-flex items-center gap-3 bg-primary px-6 py-4 font-sans text-sm font-bold uppercase tracking-wider text-primary-foreground transition hover:bg-[color:var(--primary-dark)]">
+              <PhoneIcon className="h-4 w-4" />
+              Call to Discuss Your Project · {PHONE}
+            </a>
+          </div>
+
+          <div className="grid grid-cols-2 grid-rows-[220px_140px] gap-2">
+            <div className="row-span-2 overflow-hidden">
+              <img
+                src={heroAsset.url}
+                alt="Conveyor pouring premium topsoil at Semonick Acres"
+                className="h-full w-full object-cover"
+                width={960}
+                height={720}
+              />
+            </div>
+            <div className="overflow-hidden">
+              <img
+                src={heroAsset.url}
+                alt="Screening the topsoil pile"
+                className="h-full w-full object-cover object-[75%_50%]"
+                loading="lazy"
+              />
+            </div>
+            <div className="overflow-hidden">
+              <img
+                src={heroAsset.url}
+                alt="Semonick Acres facility"
+                className="h-full w-full object-cover object-[20%_80%]"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* STRIP STATS */}
+      <div className="border-y border-border bg-white">
+        <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-6 px-6 py-6 font-sans">
+          {[
+            ["$45", "Per Yard Delivered"],
+            ["3 Yd Min.", "Delivery Minimum"],
+            ["25 Miles", "Radius from Ellenville"],
+            ["Mon–Fri", "Delivery Days"],
+            ["3 Counties", "Sullivan · Ulster · Orange"],
+          ].map(([big, small], i, arr) => (
+            <div key={small} className="flex items-center gap-6">
+              <div className="flex flex-col">
+                <strong className="font-serif text-xl font-bold text-primary">{big}</strong>
+                <span className="text-xs uppercase tracking-wider text-muted-foreground">{small}</span>
+              </div>
+              {i < arr.length - 1 && <span className="hidden h-8 w-px bg-border md:block" />}
             </div>
           ))}
         </div>
-      </section>
+      </div>
 
-      {/* About + image split */}
-      <section id="about" className="bg-muted">
-        <div className="mx-auto max-w-4xl px-6 py-24 text-center">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-widest text-accent">Our Farm</p>
-            <h2 className="mt-2 font-serif text-4xl font-bold md:text-5xl">Three generations. One pile at a time.</h2>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              The Semonick family has been working these fields since 1978. What started as a small hay operation
-              has grown into the region's most trusted source for premium topsoil, mulch, and garden materials.
-            </p>
-            <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              We still screen every load ourselves, and we still answer the phone by name.
-            </p>
-            <dl className="mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-6 border-t border-border pt-8 text-left">
-              <div>
-                <dt className="text-xs uppercase tracking-widest text-muted-foreground">Screened on-site</dt>
-                <dd className="mt-1 font-serif text-lg font-semibold">Every yard</dd>
-              </div>
-              <div>
-                <dt className="text-xs uppercase tracking-widest text-muted-foreground">Locally sourced</dt>
-                <dd className="mt-1 font-serif text-lg font-semibold">Grown here</dd>
-              </div>
-            </dl>
+      {/* BUILDERS CTA */}
+      <section className="bg-primary py-18 text-primary-foreground">
+        <div className="mx-auto max-w-[1100px] px-6 py-4">
+          <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-[2fr_1fr]">
+            <div>
+              <h2 className="font-serif text-[clamp(1.8rem,3.5vw,2.5rem)] font-bold leading-[1.15] text-white">
+                Builders &amp; Contractors
+                <br />— Let's Talk Volume
+              </h2>
+              <p className="mt-4 font-sans text-[0.95rem] leading-[1.7] text-white/80">
+                Running a development, subdivision, or large landscaping contract? We supply contractors throughout the region with consistent product and reliable delivery. Volume pricing available. Ongoing project relationships welcome. One call gets you a quote.
+              </p>
+            </div>
+            <div className="flex flex-col items-start gap-3">
+              <a href={`tel:${TEL}`} className="inline-flex items-center gap-2 bg-white px-8 py-4 font-sans text-base font-bold text-primary transition hover:bg-[color:var(--muted)]">
+                <PhoneIcon className="h-4 w-4" />
+                {PHONE}
+              </a>
+              <span className="font-sans text-[0.78rem] tracking-wide text-white/60">Bulk orders · Extended delivery · Custom scheduling</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Delivery */}
-      <section id="delivery" className="mx-auto max-w-7xl px-6 py-24">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-start">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-widest text-accent">Delivery</p>
-            <h2 className="mt-2 font-serif text-4xl font-bold md:text-5xl">Same-week delivery, right to your driveway.</h2>
-            <p className="mt-6 text-muted-foreground">
-              Tell us the yards, the address, and the day — we'll bring the load.
-            </p>
-            <ul className="mt-8 space-y-4">
-              {[
-                ["Bulk delivery", "1 to 20 yards per load, dumped where you need it."],
-                ["Farm pickup", "Bring your truck or trailer — we'll load you up in minutes."],
-                ["Contractor accounts", "Net-30 billing and standing weekly orders for pros."],
-              ].map(([t, d]) => (
-                <li key={t} className="flex gap-4 border-b border-border pb-4">
-                  <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent" />
-                  <div>
-                    <div className="font-serif text-lg font-semibold">{t}</div>
-                    <div className="text-sm text-muted-foreground">{d}</div>
+      {/* PRODUCTS */}
+      <section className="bg-muted py-20">
+        <div className="mx-auto max-w-[1100px] px-6">
+          <SectionLabel>Material Detail</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold md:text-5xl">
+            What You're <em className="not-italic text-primary">Getting</em>
+          </h2>
+
+          <div className="mt-9 grid grid-cols-1 gap-[2px] bg-border md:grid-cols-3">
+            {products.map((p) => (
+              <div key={p.title} className="flex flex-col bg-white p-8">
+                <div className="mb-5 flex h-[150px] items-center justify-center overflow-hidden bg-muted">
+                  <img
+                    src={heroAsset.url}
+                    alt={p.title}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <span className="mb-4 inline-block w-fit bg-[color:var(--field)] px-2 py-[3px] font-sans text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-white">
+                  {p.tag}
+                </span>
+                <h3 className="mb-2 font-serif text-lg font-bold text-[color:var(--secondary)]">{p.title}</h3>
+                <p className="font-sans text-sm leading-[1.65] text-muted-foreground">{p.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section id="services" className="py-20">
+        <div className="mx-auto max-w-[1100px] px-6">
+          <SectionLabel>What We Offer</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold md:text-5xl">
+            Products <em className="not-italic text-primary">&amp;</em> Services
+          </h2>
+
+          <div className="mt-9 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {services.map((s) => (
+              <div key={s.title} className="flex flex-col border border-border bg-white p-7 transition hover:border-primary hover:shadow-md">
+                <h3 className="font-serif text-lg font-bold text-[color:var(--secondary)]">{s.title}</h3>
+                <p className="mt-2 flex-1 font-sans text-sm leading-[1.65] text-muted-foreground">{s.body}</p>
+                {s.badge && (
+                  <span className="mt-4 inline-block w-fit border border-primary px-3 py-1 font-sans text-[0.7rem] font-bold uppercase tracking-[0.1em] text-primary">
+                    {s.badge}
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* WHY US */}
+      <section className="bg-muted py-20">
+        <div className="mx-auto max-w-[1100px] px-6">
+          <SectionLabel>Why Semonick Acres</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold md:text-5xl">
+            What Sets Us <em className="not-italic text-primary">Apart</em>
+          </h2>
+
+          <div className="mt-9 grid grid-cols-1 gap-[2px] bg-border md:grid-cols-2 lg:grid-cols-3">
+            {why.map((w) => (
+              <div key={w.title} className="bg-white p-7">
+                <div className="mb-4 h-1 w-10 bg-primary" />
+                <h3 className="font-serif text-lg font-bold text-[color:var(--secondary)]">{w.title}</h3>
+                <p className="mt-2 font-sans text-sm leading-[1.65] text-muted-foreground">{w.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PRICING / DELIVERY BAND */}
+      <section id="delivery" className="bg-white py-20">
+        <div className="mx-auto max-w-[1100px] px-6">
+          <SectionLabel>Straight Pricing</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold md:text-5xl">
+            <em className="not-italic text-primary">$45</em> per yard, delivered
+          </h2>
+          <p className="mt-4 max-w-2xl font-sans text-muted-foreground">
+            3-yard minimum. Within 25 miles of Ellenville, NY. Bulk and contractor pricing negotiated over the phone.
+          </p>
+
+          <div className="mt-10 grid grid-cols-2 gap-[2px] bg-border md:grid-cols-4">
+            {[
+              ["$45", "Per cubic yard"],
+              ["3 Yd", "Minimum order"],
+              ["25 mi", "Standard radius"],
+              ["Mon–Fri", "Delivery days"],
+            ].map(([n, l]) => (
+              <div key={l} className="bg-white p-6">
+                <div className="font-serif text-3xl font-bold text-primary">{n}</div>
+                <div className="mt-1 font-sans text-xs uppercase tracking-wider text-muted-foreground">{l}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* COVERAGE */}
+      <section id="coverage" className="bg-muted py-20">
+        <div className="mx-auto max-w-[1100px] px-6">
+          <div className="grid grid-cols-1 items-start gap-14 md:grid-cols-2">
+            <div>
+              <SectionLabel>Service Area</SectionLabel>
+              <h2 className="font-serif text-4xl font-bold md:text-5xl">
+                We Serve <em className="not-italic text-primary">Three Counties</em>
+              </h2>
+              <ul className="mt-7 list-none">
+                {["Sullivan County", "Ulster County", "Orange County"].map((c) => (
+                  <li key={c} className="flex items-center gap-3 border-b border-border py-3.5 font-sans text-[0.92rem]">
+                    <span className="block h-2.5 w-2.5 bg-primary" />
+                    {c}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-7 border-l-[3px] border-[color:var(--accent)] bg-white p-5 font-sans text-[0.85rem] leading-[1.65] text-muted-foreground">
+                <strong className="text-foreground">Base of operations:</strong> Ellenville, New York.
+                <br />
+                Standard delivery within 25 miles. Extended delivery available by arrangement — call to confirm coverage for your site.
+              </div>
+            </div>
+
+            <div className="bg-white p-4">
+              <svg viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg" className="block h-auto w-full">
+                <rect width="500" height="420" fill="#F2EDE6" />
+                <polygon points="80,80 240,72 248,180 230,210 200,220 170,240 120,250 80,240 60,200 62,140" fill="#C0302A" fillOpacity="0.15" stroke="#C0302A" strokeWidth="2" />
+                <text x="145" y="165" fontFamily="Georgia,serif" fontSize="15" fill="#8B1A15" fontWeight="bold" textAnchor="middle">Sullivan</text>
+                <text x="145" y="183" fontFamily="Arial,sans-serif" fontSize="11" fill="#8B1A15" textAnchor="middle">County</text>
+                <polygon points="248,180 380,160 400,170 415,200 410,280 390,300 340,310 280,300 230,280 230,210 248,180" fill="#C0302A" fillOpacity="0.1" stroke="#C0302A" strokeWidth="2" />
+                <text x="325" y="238" fontFamily="Georgia,serif" fontSize="15" fill="#8B1A15" fontWeight="bold" textAnchor="middle">Ulster</text>
+                <text x="325" y="256" fontFamily="Arial,sans-serif" fontSize="11" fill="#8B1A15" textAnchor="middle">County</text>
+                <polygon points="170,240 230,210 230,280 280,300 270,340 240,360 180,370 130,350 110,310 120,250" fill="#C0302A" fillOpacity="0.07" stroke="#C0302A" strokeWidth="2" />
+                <text x="192" y="315" fontFamily="Georgia,serif" fontSize="15" fill="#8B1A15" fontWeight="bold" textAnchor="middle">Orange</text>
+                <text x="192" y="333" fontFamily="Arial,sans-serif" fontSize="11" fill="#8B1A15" textAnchor="middle">County</text>
+                <circle cx="212" cy="212" r="88" fill="none" stroke="#D4B878" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.8" />
+                <circle cx="212" cy="212" r="7" fill="#C0302A" />
+                <circle cx="212" cy="212" r="12" fill="none" stroke="#C0302A" strokeWidth="1.5" opacity="0.4" />
+                <rect x="222" y="198" width="90" height="22" rx="2" fill="#1C1C1C" fillOpacity="0.82" />
+                <text x="267" y="213" fontFamily="Arial,sans-serif" fontSize="11" fill="white" fontWeight="bold" textAnchor="middle">Ellenville, NY</text>
+                <text x="288" y="140" fontFamily="Arial,sans-serif" fontSize="10" fill="#9B7B5A" textAnchor="middle" transform="rotate(-30,288,140)">25-mile radius</text>
+                <rect x="338" y="340" width="148" height="68" rx="3" fill="white" fillOpacity="0.9" />
+                <rect x="348" y="353" width="12" height="12" fill="#C0302A" fillOpacity="0.15" stroke="#C0302A" strokeWidth="1.5" />
+                <text x="366" y="363" fontFamily="Arial,sans-serif" fontSize="11" fill="#1C1C1C">Service Counties</text>
+                <circle cx="354" cy="381" r="5" fill="#C0302A" />
+                <text x="366" y="385" fontFamily="Arial,sans-serif" fontSize="11" fill="#1C1C1C">Ellenville, NY</text>
+                <line x1="348" y1="397" x2="360" y2="397" stroke="#D4B878" strokeWidth="1.5" strokeDasharray="4 3" />
+                <text x="366" y="400" fontFamily="Arial,sans-serif" fontSize="11" fill="#1C1C1C">25-Mile Delivery</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="py-20">
+        <div className="mx-auto max-w-[1100px] px-6">
+          <SectionLabel>Common Questions</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold md:text-5xl">
+            Frequently <em className="not-italic text-primary">Asked</em>
+          </h2>
+
+          <div className="mt-9 grid grid-cols-1 gap-[2px] bg-border md:grid-cols-2">
+            {faqs.map(([q, a], i) => {
+              const open = openFaq === i;
+              return (
+                <div key={q} className={`bg-white border-t-[3px] transition ${open ? "border-primary" : "border-transparent"}`}>
+                  <button
+                    onClick={() => setOpenFaq(open ? null : i)}
+                    className="flex w-full items-center justify-between gap-4 px-7 py-6 text-left font-serif text-base leading-tight text-[color:var(--secondary)] hover:text-primary"
+                  >
+                    <span>{q}</span>
+                    <svg viewBox="0 0 24 24" className={`h-5 w-5 shrink-0 fill-current transition ${open ? "rotate-180" : ""}`}>
+                      <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2" />
+                    </svg>
+                  </button>
+                  {open && (
+                    <div className="px-7 pb-6 font-sans text-sm leading-[1.7] text-muted-foreground">{a}</div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="bg-[color:var(--secondary)] py-20 text-white">
+        <div className="mx-auto max-w-[1100px] px-6">
+          <SectionLabel light>Get in Touch</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold text-white md:text-5xl">
+            Request a <em className="not-italic text-primary">Quote</em>
+          </h2>
+
+          <div className="mt-10 grid grid-cols-1 items-start gap-14 md:grid-cols-2">
+            <div>
+              <p className="font-sans text-[0.92rem] leading-[1.7] text-white/70">
+                The fastest way to order or get a quote is a phone call. We're a small family operation — you'll talk to someone who can answer your questions and schedule your delivery on the spot.
+              </p>
+
+              <div className="mt-8 space-y-5">
+                {[
+                  { label: "Call or Text", value: PHONE, href: `tel:${TEL}` },
+                  { label: "Based In", value: "Ellenville, New York" },
+                  { label: "Delivery Days", value: "Monday – Friday" },
+                  { label: "Service Area", value: "Sullivan · Ulster · Orange Counties" },
+                ].map((d) => (
+                  <div key={d.label} className="flex items-start gap-4">
+                    <div className="grid h-11 w-11 shrink-0 place-items-center bg-white/5">
+                      <span className="block h-2 w-2 bg-[color:var(--accent)]" />
+                    </div>
+                    <div>
+                      <h4 className="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[color:var(--accent)]">{d.label}</h4>
+                      {d.href ? (
+                        <a href={d.href} className="mt-1 block font-sans text-[0.95rem] text-white hover:text-[color:var(--accent)]">{d.value}</a>
+                      ) : (
+                        <p className="mt-1 font-sans text-[0.95rem] text-white">{d.value}</p>
+                      )}
+                    </div>
                   </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="rounded-lg border border-border bg-card p-8">
-            <h3 className="font-serif text-2xl font-bold">Delivery zones</h3>
-            <p className="mt-2 text-sm text-muted-foreground">Flat-rate delivery based on distance from the farm.</p>
-            <ul className="mt-6 divide-y divide-border">
-              {[
-                ["0 – 10 miles", "$45"],
-                ["10 – 20 miles", "$75"],
-                ["20 – 35 miles", "$120"],
-                ["35+ miles", "Call for quote"],
-              ].map(([zone, price]) => (
-                <li key={zone} className="flex items-center justify-between py-4">
-                  <span className="font-medium">{zone}</span>
-                  <span className="font-serif text-lg font-bold text-primary">{price}</span>
-                </li>
-              ))}
-            </ul>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              {submitted ? (
+                <p className="font-sans text-[0.9rem] text-[color:var(--accent)]">
+                  Thanks! We'll be in touch shortly. For faster service, call {PHONE}.
+                </p>
+              ) : (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setSubmitted(true);
+                  }}
+                  className="font-sans"
+                >
+                  <div className="grid grid-cols-2 gap-3">
+                    <Field label="First Name" name="fname" placeholder="John" />
+                    <Field label="Last Name" name="lname" placeholder="Smith" />
+                  </div>
+                  <Field label="Phone Number" name="phone" type="tel" placeholder="845-555-0100" />
+                  <div className="mb-4">
+                    <label className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/50">What do you need?</label>
+                    <select className="w-full appearance-none border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white outline-none focus:border-primary">
+                      <option value="" disabled>Select a service...</option>
+                      <option>Topsoil Delivery</option>
+                      <option>Loam Delivery</option>
+                      <option>Approved Septic Fill</option>
+                      <option>Septic System Installation</option>
+                      <option>Driveway Installation</option>
+                      <option>Bulk / Wholesale Order</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <Field label="Approximate Yards Needed" name="yards" placeholder="e.g. 10 yards" />
+                  <div className="mb-4">
+                    <label className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/50">Project Details</label>
+                    <textarea rows={4} placeholder="Tell us about your project, site location, and timeline..." className="w-full border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-primary" />
+                  </div>
+                  <button type="submit" className="mt-2 flex w-full items-center justify-center gap-2 bg-primary px-8 py-3.5 text-sm font-bold uppercase tracking-wider text-primary-foreground transition hover:bg-[color:var(--primary-dark)]">
+                    Send Message
+                  </button>
+                </form>
+              )}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Yard photo band — reuses hero photo */}
-      <section className="relative h-[420px] w-full overflow-hidden">
-        <img
-          src={heroAsset.url}
-          alt="Topsoil pouring from the conveyor at Semonick Acres yard"
-          loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 to-black/20" />
-        <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6">
-          <div className="max-w-xl text-white">
-            <h2 className="font-serif text-4xl font-bold leading-tight md:text-5xl">
-              Visit the yard. Kick the piles.
-            </h2>
-            <p className="mt-4 text-white/80">
-              Open Monday–Saturday, 7am to 5pm. Bring the kids — they can meet the dog.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" className="bg-primary text-primary-foreground">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-24 md:grid-cols-2">
+      {/* FOOTER */}
+      <footer className="bg-[#111] px-6 pb-7 pt-12 text-white/55">
+        <div className="mx-auto mb-9 grid max-w-[1100px] grid-cols-1 gap-12 md:grid-cols-[2fr_1fr_1fr]">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-widest text-accent">Get in touch</p>
-            <h2 className="mt-2 font-serif text-4xl font-bold md:text-5xl">Call the farm. We'll pick up.</h2>
-            <p className="mt-6 max-w-md text-primary-foreground/80">
-              Tell us what you're building, planting, or fixing, and we'll help you figure out how many yards you need.
+            <div className="mb-3 font-sans text-[1.05rem] font-bold uppercase tracking-[0.04em] text-white">
+              Semonick <span className="text-[color:var(--accent)]">Acres</span> Farm
+            </div>
+            <p className="font-sans text-[0.83rem] leading-[1.7]">
+              A family-run wholesale topsoil operation based in Ellenville, New York. Serving Sullivan, Ulster, and Orange Counties with quality screened materials and reliable delivery.
             </p>
-            <div className="mt-10 space-y-6 border-t border-primary-foreground/20 pt-8">
-              <div>
-                <div className="text-xs uppercase tracking-widest text-primary-foreground/60">Phone</div>
-                <a href="tel:+17245550142" className="mt-1 block font-serif text-2xl font-bold hover:text-accent">(724) 555-0142</a>
-              </div>
-              <div>
-                <div className="text-xs uppercase tracking-widest text-primary-foreground/60">Yard</div>
-                <div className="mt-1 font-serif text-xl">1428 Semonick Road<br />Rural Valley, PA 16249</div>
-              </div>
-              <div>
-                <div className="text-xs uppercase tracking-widest text-primary-foreground/60">Hours</div>
-                <div className="mt-1 font-serif text-xl">Mon–Sat · 7am – 5pm</div>
-              </div>
-            </div>
           </div>
-
-          <form className="rounded-lg bg-background p-8 text-foreground shadow-xl" onSubmit={(e) => e.preventDefault()}>
-            <h3 className="font-serif text-2xl font-bold">Request a quote</h3>
-            <div className="mt-6 space-y-4">
-              <div>
-                <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Name</label>
-                <input className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary" placeholder="Jane Semonick" />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Phone</label>
-                  <input className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary" placeholder="(724) …" />
-                </div>
-                <div>
-                  <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Yards</label>
-                  <input className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary" placeholder="e.g. 6" />
-                </div>
-              </div>
-              <div>
-                <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">What do you need?</label>
-                <textarea rows={4} className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary" placeholder="Topsoil for a new lawn, delivered next week…" />
-              </div>
-              <button className="mt-2 w-full rounded-md bg-primary py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110">
-                Send request
-              </button>
-            </div>
-          </form>
+          <FooterCol title="Services" items={["Organic Screened Topsoil", "Loam", "Approved Septic Fill", "Septic System Installation", "Driveway Installation"]} />
+          <FooterCol title="Delivery Info" items={["$45 / cubic yard delivered", "3 yard minimum", "25-mile radius from Ellenville", "Mon – Fri delivery", PHONE]} />
         </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-border bg-secondary text-secondary-foreground">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-8 md:flex-row">
-          <div className="flex items-center gap-2">
-            <span className="grid h-8 w-8 place-items-center rounded-full bg-accent font-serif text-sm font-bold text-accent-foreground">S</span>
-            <span className="font-serif text-lg font-bold">Semonick Acres</span>
-          </div>
-          <p className="text-sm text-secondary-foreground/70">© {new Date().getFullYear()} Semonick Acres. Grown, screened, and delivered with pride.</p>
+        <div className="mx-auto max-w-[1100px] border-t border-white/[0.07] pt-5 font-sans text-[0.76rem] text-white/30">
+          © Semonick Acres Farm · Ellenville, NY · Sullivan, Ulster &amp; Orange Counties · <a href={`tel:${TEL}`} className="text-white/40 hover:text-white/60">{PHONE}</a>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function Field({ label, name, type = "text", placeholder }: { label: string; name: string; type?: string; placeholder?: string }) {
+  return (
+    <div className="mb-4">
+      <label htmlFor={name} className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/50">
+        {label}
+      </label>
+      <input
+        id={name}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        className="w-full border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-primary"
+      />
+    </div>
+  );
+}
+
+function FooterCol({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div>
+      <h4 className="mb-3.5 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[color:var(--accent)]">{title}</h4>
+      <ul className="list-none">
+        {items.map((item) => (
+          <li key={item} className="py-1 font-sans text-[0.83rem]">{item}</li>
+        ))}
+      </ul>
     </div>
   );
 }
