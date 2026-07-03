@@ -298,7 +298,7 @@ function Index() {
 
           <div className="mt-10 grid grid-cols-2 gap-[2px] bg-border md:grid-cols-4">
             {[
-              ["$45", "Per cubic yard"],
+              ["$45", "Yard — call for quote"],
               ["3 Yd", "Minimum order"],
               ["25 mi", "Standard radius"],
               ["Mon–Fri", "Delivery days"],
