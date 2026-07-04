@@ -17,6 +17,7 @@ const products = [
     tag: "Best Seller",
     title: "Organic Screened Topsoil",
     body: "Screened to ¾\" for a clean, consistent material. Suitable for lawns, gardens, fill, and large-scale grading. Tested and proven across hundreds of local projects.",
+    image: conveyorAsset.url,
   },
   {
     tag: "Available",
