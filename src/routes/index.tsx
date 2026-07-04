@@ -277,6 +277,44 @@ function Index() {
       </section>
 
       {/* WHY US */}
+      {/* GALLERY */}
+      <section id="gallery" className="bg-white py-20">
+        <div className="mx-auto max-w-[1100px] px-6">
+          <SectionLabel>From the Yard</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold md:text-5xl">
+            On the <em className="not-italic text-primary">Job</em>
+          </h2>
+          <p className="mt-4 max-w-2xl font-sans text-muted-foreground">
+            A look at our equipment, screening operation, and delivery fleet in action at the Ellenville yard.
+          </p>
+
+          <Carousel opts={{ loop: true, align: "start" }} className="mt-10 px-12">
+            <CarouselContent>
+              {gallery.map((g) => (
+                <CarouselItem key={g.src} className="md:basis-1/2 lg:basis-1/3">
+                  <figure className="flex h-full flex-col border border-border bg-white">
+                    <div className="aspect-[4/3] overflow-hidden bg-muted">
+                      <img
+                        src={g.src}
+                        alt={g.caption}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                      />
+                    </div>
+                    <figcaption className="border-t border-border p-4 font-sans text-xs uppercase tracking-[0.08em] text-muted-foreground">
+                      {g.caption}
+                    </figcaption>
+                  </figure>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-0" />
+            <CarouselNext className="right-0" />
+          </Carousel>
+        </div>
+      </section>
+
+      {/* WHY US */}
       <section className="bg-muted py-20">
         <div className="mx-auto max-w-[1100px] px-6">
           <SectionLabel>Why Semonick Acres</SectionLabel>
