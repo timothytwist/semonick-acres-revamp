@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import heroAsset from "@/assets/topsoil-hero.jpg.asset.json";
+import conveyorAsset from "@/assets/topsoil-conveyor.jpg.asset.json";
+
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -15,6 +17,7 @@ const products = [
     tag: "Best Seller",
     title: "Organic Screened Topsoil",
     body: "Screened to ¾\" for a clean, consistent material. Suitable for lawns, gardens, fill, and large-scale grading. Tested and proven across hundreds of local projects.",
+    image: conveyorAsset.url,
   },
   {
     tag: "Available",
@@ -188,10 +191,16 @@ function Index() {
       </section>
 
       {/* PRODUCTS */}
-      <section className="bg-muted py-20">
-        <div className="mx-auto max-w-[1100px] px-6">
-          <SectionLabel>Material Detail</SectionLabel>
-          <h2 className="font-serif text-4xl font-bold md:text-5xl">
+      <section className="relative overflow-hidden bg-secondary py-20">
+        <img
+          src={conveyorAsset.url}
+          alt="Conveyor piling organic screened topsoil"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-secondary/80" />
+        <div className="relative z-10 mx-auto max-w-[1100px] px-6">
+          <SectionLabel light>Material Detail</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold text-white md:text-5xl">
             What You're <em className="not-italic text-primary">Getting</em>
           </h2>
 
@@ -200,7 +209,7 @@ function Index() {
               <div key={p.title} className="flex flex-col bg-white p-8">
                 <div className="mb-5 flex h-[150px] items-center justify-center overflow-hidden bg-muted">
                   <img
-                    src={heroAsset.url}
+                    src={p.image ?? heroAsset.url}
                     alt={p.title}
                     className="h-full w-full object-cover"
                     loading="lazy"
