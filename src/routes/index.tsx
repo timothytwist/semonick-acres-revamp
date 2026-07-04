@@ -116,53 +116,29 @@ function Index() {
       </nav>
 
       {/* HERO */}
-      <section className="bg-[color:var(--secondary)] py-16 text-white md:py-20">
-        <div className="mx-auto grid max-w-[1100px] grid-cols-1 items-center gap-12 px-6 md:grid-cols-2">
-          <div>
-            <div className="mb-4 font-sans text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--accent)]">
-              Family Operated · Ellenville, NY
-            </div>
-            <h1 className="font-serif text-[clamp(2.4rem,5vw,3.75rem)] font-bold leading-[1.05] text-white">
-              Premium <em className="not-italic text-[color:var(--primary)]">Topsoil</em>
-              <br />
-              Wholesale Direct
-            </h1>
-            <p className="mt-6 max-w-xl font-sans text-base leading-relaxed text-white/75">
-              Organic screened topsoil, approved septic fill, and loam — delivered to Sullivan, Ulster, and Orange Counties. Built for contractors, landscapers, and developers who need volume they can count on.
-            </p>
-            <a href={`tel:${TEL}`} className="mt-8 inline-flex items-center gap-3 bg-primary px-6 py-4 font-sans text-sm font-bold uppercase tracking-wider text-primary-foreground transition hover:bg-[color:var(--primary-dark)]">
-              <PhoneIcon className="h-4 w-4" />
-              Call to Discuss Your Project · {PHONE}
-            </a>
+      <section className="relative flex min-h-[520px] items-center justify-center overflow-hidden bg-secondary text-white md:min-h-[600px]">
+        <img
+          src={heroAsset.url}
+          alt="Conveyor pouring premium topsoil at Semonick Acres"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-secondary/80" />
+        <div className="relative z-10 mx-auto max-w-[1100px] px-6 py-20 text-center md:py-28">
+          <div className="mb-4 font-sans text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--accent)]">
+            Family Operated · Ellenville, NY
           </div>
-
-          <div className="grid grid-cols-2 grid-rows-[220px_140px] gap-2">
-            <div className="row-span-2 overflow-hidden">
-              <img
-                src={heroAsset.url}
-                alt="Conveyor pouring premium topsoil at Semonick Acres"
-                className="h-full w-full object-cover"
-                width={960}
-                height={720}
-              />
-            </div>
-            <div className="overflow-hidden">
-              <img
-                src={heroAsset.url}
-                alt="Screening the topsoil pile"
-                className="h-full w-full object-cover object-[75%_50%]"
-                loading="lazy"
-              />
-            </div>
-            <div className="overflow-hidden">
-              <img
-                src={heroAsset.url}
-                alt="Semonick Acres facility"
-                className="h-full w-full object-cover object-[20%_80%]"
-                loading="lazy"
-              />
-            </div>
-          </div>
+          <h1 className="font-serif text-[clamp(2.4rem,5vw,3.75rem)] font-bold leading-[1.05] text-white">
+            Premium <em className="not-italic text-[color:var(--primary)]">Topsoil</em>
+            <br />
+            Wholesale Direct
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl font-sans text-base leading-relaxed text-white/75">
+            Organic screened topsoil, approved septic fill, and loam — delivered to Sullivan, Ulster, and Orange Counties. Built for contractors, landscapers, and developers who need volume they can count on.
+          </p>
+          <a href={`tel:${TEL}`} className="mt-8 inline-flex items-center gap-3 bg-primary px-6 py-4 font-sans text-sm font-bold uppercase tracking-wider text-primary-foreground transition hover:bg-[color:var(--primary-dark)]">
+            <PhoneIcon className="h-4 w-4" />
+            Call to Discuss Your Project · {PHONE}
+          </a>
         </div>
       </section>
 
