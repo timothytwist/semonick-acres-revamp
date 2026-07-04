@@ -23,6 +23,7 @@ const products = [
     tag: "Available",
     title: "Loam",
     body: "Quality loam for a wide range of construction and landscape applications. Call for pricing and to confirm current availability.",
+    image: loamAsset.url,
   },
   {
     tag: "Approved",
