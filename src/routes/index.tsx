@@ -195,9 +195,9 @@ function Index() {
         <img
           src={conveyorAsset.url}
           alt="Conveyor piling organic screened topsoil"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover brightness-110"
         />
-        <div className="absolute inset-0 bg-secondary/80" />
+        <div className="absolute inset-0 bg-secondary/60" />
         <div className="relative z-10 mx-auto max-w-[1100px] px-6">
           <SectionLabel light>Material Detail</SectionLabel>
           <h2 className="font-serif text-4xl font-bold text-white md:text-5xl">
