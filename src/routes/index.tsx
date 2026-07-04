@@ -139,6 +139,7 @@ function Index() {
           <ul className="hidden items-center gap-6 md:flex">
             {[
               ["Services", "#services"],
+              ["Gallery", "#gallery"],
               ["Pricing", "#delivery"],
               ["Coverage", "#coverage"],
               ["FAQ", "#faq"],
