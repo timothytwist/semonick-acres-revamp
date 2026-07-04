@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import heroAsset from "@/assets/topsoil-hero.jpg.asset.json";
 import conveyorAsset from "@/assets/topsoil-conveyor.jpg.asset.json";
-
+import loamAsset from "@/assets/loam-yard.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -23,6 +23,7 @@ const products = [
     tag: "Available",
     title: "Loam",
     body: "Quality loam for a wide range of construction and landscape applications. Call for pricing and to confirm current availability.",
+    image: loamAsset.url,
   },
   {
     tag: "Approved",
