@@ -293,40 +293,37 @@ function Index() {
         </div>
       </section>
 
-      {/* WHY US */}
       {/* GALLERY */}
-      <section id="gallery" className="bg-white py-20">
-        <div className="mx-auto max-w-[1100px] px-6">
-          <SectionLabel>From the Yard</SectionLabel>
-          <h2 className="font-serif text-4xl font-bold md:text-5xl">
+      <section id="gallery" className="flex min-h-screen flex-col bg-secondary py-20">
+        <div className="mx-auto w-full max-w-[1400px] flex-1 px-6">
+          <SectionLabel light>From the Yard</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold text-white md:text-5xl">
             On the <em className="not-italic text-primary">Job</em>
           </h2>
-          <p className="mt-4 max-w-2xl font-sans text-muted-foreground">
+          <p className="mt-4 max-w-2xl font-sans text-white/70">
             A look at our equipment, screening operation, and delivery fleet in action at the Ellenville yard.
           </p>
 
-          <Carousel opts={{ loop: true, align: "start" }} className="mt-10 px-12">
-            <CarouselContent>
+          <Carousel opts={{ loop: true, align: "start" }} className="mt-10 flex h-[calc(100vh-16rem)] w-full flex-1">
+            <CarouselContent className="h-full">
               {gallery.map((g) => (
-                <CarouselItem key={g.src} className="md:basis-1/2 lg:basis-1/3">
-                  <figure className="flex h-full flex-col border border-border bg-white">
-                    <div className="aspect-[4/3] overflow-hidden bg-muted">
-                      <img
-                        src={g.src}
-                        alt={g.caption}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition duration-500 hover:scale-105"
-                      />
-                    </div>
-                    <figcaption className="border-t border-border p-4 font-sans text-xs uppercase tracking-[0.08em] text-muted-foreground">
+                <CarouselItem key={g.src} className="h-full md:basis-1/2 lg:basis-1/3">
+                  <figure className="relative h-full overflow-hidden">
+                    <img
+                      src={g.src}
+                      alt={g.caption}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                    />
+                    <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 font-sans text-xs uppercase tracking-[0.08em] text-white">
                       {g.caption}
                     </figcaption>
                   </figure>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="left-0" />
-            <CarouselNext className="right-0" />
+            <CarouselPrevious className="left-2 border-white/20 bg-black/40 text-white hover:bg-black/60 hover:text-white" />
+            <CarouselNext className="right-2 border-white/20 bg-black/40 text-white hover:bg-black/60 hover:text-white" />
           </Carousel>
         </div>
       </section>
