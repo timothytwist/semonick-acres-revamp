@@ -3,12 +3,34 @@ import heroAsset from "@/assets/topsoil-hero.jpg.asset.json";
 import conveyorAsset from "@/assets/topsoil-conveyor.jpg.asset.json";
 import loamAsset from "@/assets/loam-yard.jpg.asset.json";
 import septicFillAsset from "@/assets/septic-fill-loader.jpg.asset.json";
+import gallery1 from "@/assets/gallery/gallery-1.jpg.asset.json";
+import gallery2 from "@/assets/gallery/gallery-2.jpg.asset.json";
+import gallery3 from "@/assets/gallery/gallery-3.jpg.asset.json";
+import gallery4 from "@/assets/gallery/gallery-4.jpg.asset.json";
+import gallery5 from "@/assets/gallery/gallery-5.jpg.asset.json";
+import gallery6 from "@/assets/gallery/gallery-6.jpg.asset.json";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
 import { useState } from "react";
+
+const gallery = [
+  { src: gallery5.url, caption: "Fresh screened topsoil off the conveyor" },
+  { src: gallery2.url, caption: "Finlay 863+ screener stacking a pile" },
+  { src: gallery6.url, caption: "Loading the screener with raw material" },
+  { src: gallery3.url, caption: "Case CX360 excavator feeding the plant" },
+  { src: gallery4.url, caption: "Screened material moving down the belt" },
+  { src: gallery1.url, caption: "GMC 7500 dump truck ready for delivery" },
+];
 
 const PHONE = "845-551-7345";
 const TEL = "+18455517345";
