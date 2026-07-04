@@ -30,6 +30,7 @@ const products = [
     tag: "Approved",
     title: "Approved Septic Fill",
     body: "Fill material meeting state approval standards for septic system use. Proper drainage characteristics for compliant installation.",
+    image: septicFillAsset.url,
   },
 ];
 
