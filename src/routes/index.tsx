@@ -295,7 +295,7 @@ function Index() {
 
       {/* GALLERY */}
       <section id="gallery" className="flex min-h-screen flex-col bg-secondary py-20">
-        <div className="mx-auto w-full max-w-[1400px] flex-1 px-6">
+        <div className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col px-6">
           <SectionLabel light>From the Yard</SectionLabel>
           <h2 className="font-serif text-4xl font-bold text-white md:text-5xl">
             On the <em className="not-italic text-primary">Job</em>
@@ -304,7 +304,7 @@ function Index() {
             A look at our equipment, screening operation, and delivery fleet in action at the Ellenville yard.
           </p>
 
-          <Carousel opts={{ loop: true, align: "start" }} className="mt-10 flex h-[calc(100vh-16rem)] w-full flex-1">
+          <Carousel opts={{ loop: true, align: "start" }} className="mt-10 flex min-h-0 w-full flex-1">
             <CarouselContent className="h-full">
               {gallery.map((g) => (
                 <CarouselItem key={g.src} className="h-full md:basis-1/2 lg:basis-1/3">
