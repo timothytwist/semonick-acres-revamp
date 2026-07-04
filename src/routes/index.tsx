@@ -307,7 +307,7 @@ function Index() {
           <Carousel opts={{ loop: true, align: "start" }} className="mt-10 flex min-h-0 w-full flex-1">
             <CarouselContent className="h-full">
               {gallery.map((g) => (
-                <CarouselItem key={g.src} className="h-full md:basis-1/2 lg:basis-1/3">
+                <CarouselItem key={g.src} className="h-full min-h-0 md:basis-1/2 lg:basis-1/3">
                   <figure className="relative h-full overflow-hidden">
                     <img
                       src={g.src}
