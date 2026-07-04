@@ -3,12 +3,34 @@ import heroAsset from "@/assets/topsoil-hero.jpg.asset.json";
 import conveyorAsset from "@/assets/topsoil-conveyor.jpg.asset.json";
 import loamAsset from "@/assets/loam-yard.jpg.asset.json";
 import septicFillAsset from "@/assets/septic-fill-loader.jpg.asset.json";
+import gallery1 from "@/assets/gallery/gallery-1.jpg.asset.json";
+import gallery2 from "@/assets/gallery/gallery-2.jpg.asset.json";
+import gallery3 from "@/assets/gallery/gallery-3.jpg.asset.json";
+import gallery4 from "@/assets/gallery/gallery-4.jpg.asset.json";
+import gallery5 from "@/assets/gallery/gallery-5.jpg.asset.json";
+import gallery6 from "@/assets/gallery/gallery-6.jpg.asset.json";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
 import { useState } from "react";
+
+const gallery = [
+  { src: gallery5.url, caption: "Fresh screened topsoil off the conveyor" },
+  { src: gallery2.url, caption: "Finlay 863+ screener stacking a pile" },
+  { src: gallery6.url, caption: "Loading the screener with raw material" },
+  { src: gallery3.url, caption: "Case CX360 excavator feeding the plant" },
+  { src: gallery4.url, caption: "Screened material moving down the belt" },
+  { src: gallery1.url, caption: "GMC 7500 dump truck ready for delivery" },
+];
 
 const PHONE = "845-551-7345";
 const TEL = "+18455517345";
@@ -251,6 +273,44 @@ function Index() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* WHY US */}
+      {/* GALLERY */}
+      <section id="gallery" className="bg-white py-20">
+        <div className="mx-auto max-w-[1100px] px-6">
+          <SectionLabel>From the Yard</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold md:text-5xl">
+            On the <em className="not-italic text-primary">Job</em>
+          </h2>
+          <p className="mt-4 max-w-2xl font-sans text-muted-foreground">
+            A look at our equipment, screening operation, and delivery fleet in action at the Ellenville yard.
+          </p>
+
+          <Carousel opts={{ loop: true, align: "start" }} className="mt-10 px-12">
+            <CarouselContent>
+              {gallery.map((g) => (
+                <CarouselItem key={g.src} className="md:basis-1/2 lg:basis-1/3">
+                  <figure className="flex h-full flex-col border border-border bg-white">
+                    <div className="aspect-[4/3] overflow-hidden bg-muted">
+                      <img
+                        src={g.src}
+                        alt={g.caption}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                      />
+                    </div>
+                    <figcaption className="border-t border-border p-4 font-sans text-xs uppercase tracking-[0.08em] text-muted-foreground">
+                      {g.caption}
+                    </figcaption>
+                  </figure>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-0" />
+            <CarouselNext className="right-0" />
+          </Carousel>
         </div>
       </section>
 
