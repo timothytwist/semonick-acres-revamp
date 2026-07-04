@@ -116,14 +116,14 @@ function Index() {
       </nav>
 
       {/* HERO */}
-      <section className="relative flex min-h-[520px] items-center justify-center overflow-hidden bg-secondary text-white md:min-h-[600px]">
+      <section className="relative flex min-h-[420px] items-center justify-center overflow-hidden bg-secondary text-white md:min-h-[480px]">
         <img
           src={heroAsset.url}
           alt="Conveyor pouring premium topsoil at Semonick Acres"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover brightness-110"
         />
-        <div className="absolute inset-0 bg-secondary/80" />
-        <div className="relative z-10 mx-auto max-w-[1100px] px-6 py-20 text-center md:py-28">
+        <div className="absolute inset-0 bg-secondary/60" />
+        <div className="relative z-10 mx-auto max-w-[1100px] px-6 py-16 text-center md:py-20">
           <div className="mb-4 font-sans text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--accent)]">
             Family Operated · Ellenville, NY
           </div>
