@@ -215,7 +215,7 @@ function Index() {
                   <img
                     src={p.image ?? heroAsset.url}
                     alt={p.title}
-                    className="h-full w-full object-cover"
+                    className={`h-full w-full object-cover ${p.filter ?? ""}`}
                     loading="lazy"
                   />
                 </div>
