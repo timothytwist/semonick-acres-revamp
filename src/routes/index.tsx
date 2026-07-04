@@ -304,7 +304,7 @@ function Index() {
             A look at our equipment, screening operation, and delivery fleet in action at the Ellenville yard.
           </p>
 
-          <Carousel opts={{ loop: true, align: "start" }} className="mt-10 flex min-h-0 w-full flex-1">
+          <Carousel opts={{ loop: true, align: "start" }} className="mt-10 h-[70vh] w-full">
             <CarouselContent className="h-full">
               {gallery.map((g) => (
                 <CarouselItem key={g.src} className="h-full min-h-0 md:basis-1/2 lg:basis-1/3">
