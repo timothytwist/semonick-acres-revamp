@@ -9,6 +9,14 @@ import gallery3 from "@/assets/gallery/gallery-3.jpg.asset.json";
 import gallery4 from "@/assets/gallery/gallery-4.jpg.asset.json";
 import gallery5 from "@/assets/gallery/gallery-5.jpg.asset.json";
 import gallery6 from "@/assets/gallery/gallery-6.jpg.asset.json";
+import gallery7 from "@/assets/gallery/gallery-7.jpg.asset.json";
+import gallery8 from "@/assets/gallery/gallery-8.jpg.asset.json";
+import gallery9 from "@/assets/gallery/gallery-9.jpg.asset.json";
+import gallery10 from "@/assets/gallery/gallery-10.jpg.asset.json";
+import gallery11 from "@/assets/gallery/gallery-11.jpg.asset.json";
+import gallery12 from "@/assets/gallery/gallery-12.jpg.asset.json";
+import gallery13 from "@/assets/gallery/gallery-13.jpg.asset.json";
+import gallery14 from "@/assets/gallery/gallery-14.jpg.asset.json";
 import {
   Carousel,
   CarouselContent,
@@ -30,6 +38,14 @@ const gallery = [
   { src: gallery3.url, caption: "Case CX360 excavator feeding the plant" },
   { src: gallery4.url, caption: "Screened material moving down the belt" },
   { src: gallery1.url, caption: "GMC 7500 dump truck ready for delivery" },
+  { src: gallery11.url, caption: "Screening plant working the yard" },
+  { src: gallery7.url, caption: "Case CX160 loading the screener" },
+  { src: gallery9.url, caption: "Case 621D wheel loader on the pile" },
+  { src: gallery10.url, caption: "Takeuchi TL12V2 track loader" },
+  { src: gallery8.url, caption: "Mini excavator on a job site" },
+  { src: gallery13.url, caption: "Volvo tri-axle dump — truck 17" },
+  { src: gallery12.url, caption: "Freightliner tractor — truck 7" },
+  { src: gallery14.url, caption: "Ford F-550 dump ready to roll" },
 ];
 
 const PHONE = "845-551-7345";
