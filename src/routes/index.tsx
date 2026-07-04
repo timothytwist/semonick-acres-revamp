@@ -25,6 +25,7 @@ const products = [
     title: "Loam",
     body: "Quality loam for a wide range of construction and landscape applications. Call for pricing and to confirm current availability.",
     image: loamAsset.url,
+    filter: "brightness-110",
   },
   {
     tag: "Approved",
