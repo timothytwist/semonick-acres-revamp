@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import heroAsset from "@/assets/topsoil-hero.jpg.asset.json";
 import conveyorAsset from "@/assets/topsoil-conveyor.jpg.asset.json";
 import loamAsset from "@/assets/loam-yard.jpg.asset.json";
+import septicFillAsset from "@/assets/septic-fill-loader.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -29,6 +30,7 @@ const products = [
     tag: "Approved",
     title: "Approved Septic Fill",
     body: "Fill material meeting state approval standards for septic system use. Proper drainage characteristics for compliant installation.",
+    image: septicFillAsset.url,
   },
 ];
 
