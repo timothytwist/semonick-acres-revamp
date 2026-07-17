@@ -166,9 +166,9 @@ function Index() {
         <img
           src={heroAsset.url}
           alt="Conveyor pouring premium topsoil at Semonick Acres"
-          className="absolute inset-0 h-full w-full object-cover brightness-110"
+          className="absolute inset-0 h-full w-full object-cover brightness-125"
         />
-        <div className="absolute inset-0 bg-secondary/60" />
+        <div className="absolute inset-0 bg-secondary/50" />
         <div className="relative z-10 mx-auto max-w-[1100px] px-6 py-16 text-center md:py-20">
           <div className="mb-4 font-sans text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--accent)]">
             Family Operated · Ellenville, NY
