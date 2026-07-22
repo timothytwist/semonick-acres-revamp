@@ -111,6 +111,7 @@ const products = [
     title: "Organic Screened Topsoil",
     body: "Screened to ¾\" for a clean, consistent material. Suitable for lawns, gardens, fill, and large-scale grading. Tested and proven across hundreds of local projects.",
     image: conveyorAsset.url,
+    alt: "Organic screened topsoil pile",
   },
   {
     tag: "Available",
@@ -118,12 +119,14 @@ const products = [
     body: "Quality loam for a wide range of construction and landscape applications. Call for pricing and to confirm current availability.",
     image: loamAsset.url,
     filter: "brightness-110",
+    alt: "Screened loam pile",
   },
   {
     tag: "Approved",
     title: "Approved Septic Fill",
     body: "Fill material meeting state approval standards for septic system use. Proper drainage characteristics for compliant installation.",
     image: septicFillAsset.url,
+    alt: "Approved septic fill loader",
   },
 ];
 
