@@ -25,6 +25,44 @@ import {
   CarouselNext,
 } from "@/components/ui/carousel";
 
+const faqs = [
+  ["What is the minimum order for delivery?", "The minimum delivery order is 3 cubic yards. This applies to all delivered material within our standard 25-mile service area from Ellenville, NY."],
+  ["How much does delivery cost?", "Topsoil is $45 a yard. Call for a delivery quote. Within 25 miles of Ellenville. For larger orders or extended delivery distances, call us — we work it out on a per-project basis."],
+  ["What counties do you serve?", "We primarily serve Sullivan, Ulster, and Orange Counties within 25 miles of Ellenville, NY. For projects outside that range, call us — we can often accommodate with advance planning."],
+  ["What days do you deliver?", "Deliveries run Monday through Friday. Call ahead to schedule your delivery time and we'll work to fit your project timeline."],
+  ["Do you offer wholesale pricing for contractors?", "Yes. Contractors, developers, and landscapers with ongoing or large-volume needs should call us directly to discuss wholesale pricing. We have relationships with regional contractors and are happy to work out volume arrangements."],
+  ["Is your topsoil screened?", "Yes. Our organic topsoil is screened to ¾\", giving you clean, consistent material free of large debris. It's suitable for lawns, gardens, grading, fill, and construction applications."],
+  ["Do you install septic systems?", "Yes. In addition to supplying approved septic fill, we offer full septic system installation. Call to discuss your project and get a quote."],
+  ["Can you install driveways?", "Yes. We handle driveway installation and grading from prep through final surface. Call for a quote on your project."],
+];
+
+const localBusinessLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Semonick Acres Farm",
+  "description": "Wholesale organic screened topsoil, approved septic fill, and loam delivered to Sullivan, Ulster, and Orange Counties from Ellenville, NY.",
+  "telephone": "+18455517345",
+  "url": "https://semonickacres.com/",
+  "areaServed": [
+    { "@type": "AdministrativeArea", "name": "Sullivan County, NY" },
+    { "@type": "AdministrativeArea", "name": "Ulster County, NY" },
+    { "@type": "AdministrativeArea", "name": "Orange County, NY" },
+  ],
+};
+
+const faqPageLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(([question, answer]) => ({
+    "@type": "Question",
+    "name": question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": answer,
+    },
+  })),
+};
+
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
@@ -37,10 +75,15 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
     ],
     links: [{ rel: "canonical", href: "https://semonickacres.com/" }],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(localBusinessLd) },
+      { type: "application/ld+json", children: JSON.stringify(faqPageLd) },
+    ],
   }),
 });
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+
 
 const gallery = [
   { src: gallery5.url, caption: "Fresh screened topsoil off the conveyor" },
@@ -102,16 +145,6 @@ const why = [
   { title: "Approved Materials", body: "Our septic fill meets state approval standards. When your project requires certified materials, we have you covered without the hassle." },
 ];
 
-const faqs = [
-  ["What is the minimum order for delivery?", "The minimum delivery order is 3 cubic yards. This applies to all delivered material within our standard 25-mile service area from Ellenville, NY."],
-  ["How much does delivery cost?", "Topsoil is $45 a yard. Call for a delivery quote. Within 25 miles of Ellenville. For larger orders or extended delivery distances, call us — we work it out on a per-project basis."],
-  ["What counties do you serve?", "We primarily serve Sullivan, Ulster, and Orange Counties within 25 miles of Ellenville, NY. For projects outside that range, call us — we can often accommodate with advance planning."],
-  ["What days do you deliver?", "Deliveries run Monday through Friday. Call ahead to schedule your delivery time and we'll work to fit your project timeline."],
-  ["Do you offer wholesale pricing for contractors?", "Yes. Contractors, developers, and landscapers with ongoing or large-volume needs should call us directly to discuss wholesale pricing. We have relationships with regional contractors and are happy to work out volume arrangements."],
-  ["Is your topsoil screened?", "Yes. Our organic topsoil is screened to ¾\", giving you clean, consistent material free of large debris. It's suitable for lawns, gardens, grading, fill, and construction applications."],
-  ["Do you install septic systems?", "Yes. In addition to supplying approved septic fill, we offer full septic system installation. Call to discuss your project and get a quote."],
-  ["Can you install driveways?", "Yes. We handle driveway installation and grading from prep through final surface. Call for a quote on your project."],
-];
 
 function PhoneIcon({ className }: { className?: string }) {
   return (
@@ -132,6 +165,17 @@ function SectionLabel({ children, light = false }: { children: React.ReactNode; 
 function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [submitted, setSubmitted] = useState(false);
+  const [length, setLength] = useState("");
+  const [width, setWidth] = useState("");
+  const [depth, setDepth] = useState("");
+
+  const cubicYards = useMemo(() => {
+    const l = parseFloat(length);
+    const w = parseFloat(width);
+    const d = parseFloat(depth);
+    if (!l || !w || !d) return 0;
+    return (l * w * (d / 12)) / 27;
+  }, [length, width, depth]);
 
   return (
     <div className="min-h-screen bg-background font-serif text-foreground">
@@ -152,6 +196,7 @@ function Index() {
               ["Services", "#services"],
               ["Gallery", "#gallery"],
               ["Pricing", "#delivery"],
+              ["Calculator", "#calculator"],
               ["Coverage", "#coverage"],
               ["FAQ", "#faq"],
               ["Contact", "#contact"],
@@ -272,7 +317,7 @@ function Index() {
                 <span className="mb-4 inline-block w-fit bg-[color:var(--field)] px-2 py-[3px] font-sans text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-white">
                   {p.tag}
                 </span>
-                <h3 className="mb-2 font-serif text-lg font-bold text-[color:var(--secondary)]">{p.title}</h3>
+                <h2 className="mb-2 font-serif text-lg font-bold text-[color:var(--secondary)]">{p.title}</h2>
                 <p className="font-sans text-sm leading-[1.65] text-muted-foreground">{p.body}</p>
               </div>
             ))}
@@ -291,7 +336,7 @@ function Index() {
           <div className="mt-9 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((s) => (
               <div key={s.title} className="flex flex-col border border-border bg-white p-7 transition hover:border-primary hover:shadow-md">
-                <h3 className="font-serif text-lg font-bold text-[color:var(--secondary)]">{s.title}</h3>
+                <h2 className="font-serif text-lg font-bold text-[color:var(--secondary)]">{s.title}</h2>
                 <p className="mt-2 flex-1 font-sans text-sm leading-[1.65] text-muted-foreground">{s.body}</p>
                 {s.badge && (
                   <span className="mt-4 inline-block w-fit border border-primary px-3 py-1 font-sans text-[0.7rem] font-bold uppercase tracking-[0.1em] text-primary">
@@ -351,7 +396,7 @@ function Index() {
             {why.map((w) => (
               <div key={w.title} className="bg-white p-7">
                 <div className="mb-4 h-1 w-10 bg-primary" />
-                <h3 className="font-serif text-lg font-bold text-[color:var(--secondary)]">{w.title}</h3>
+                <h2 className="font-serif text-lg font-bold text-[color:var(--secondary)]">{w.title}</h2>
                 <p className="mt-2 font-sans text-sm leading-[1.65] text-muted-foreground">{w.body}</p>
               </div>
             ))}
@@ -382,6 +427,43 @@ function Index() {
                 <div className="mt-1 font-sans text-xs uppercase tracking-wider text-muted-foreground">{l}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CALCULATOR */}
+      <section id="calculator" className="bg-[color:var(--secondary)] py-20 text-white">
+        <div className="mx-auto max-w-[1100px] px-6">
+          <SectionLabel light>Material Estimator</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold text-white md:text-5xl">
+            Topsoil <em className="not-italic text-primary">Calculator</em>
+          </h2>
+          <p className="mt-4 max-w-2xl font-sans text-white/70">
+            Estimate how many cubic yards your project needs. Enter the area length, width, and desired depth. Call {PHONE} for a delivery quote — 3-yard minimum.
+          </p>
+
+          <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+            <div>
+              <label htmlFor="calc-length" className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/80">Length (ft)</label>
+              <input id="calc-length" type="number" min="0" step="0.1" value={length} onChange={(e) => setLength(e.target.value)} placeholder="e.g. 40" className="w-full border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-primary" />
+            </div>
+            <div>
+              <label htmlFor="calc-width" className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/80">Width (ft)</label>
+              <input id="calc-width" type="number" min="0" step="0.1" value={width} onChange={(e) => setWidth(e.target.value)} placeholder="e.g. 20" className="w-full border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-primary" />
+            </div>
+            <div>
+              <label htmlFor="calc-depth" className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/80">Depth (inches)</label>
+              <input id="calc-depth" type="number" min="0" step="0.25" value={depth} onChange={(e) => setDepth(e.target.value)} placeholder="e.g. 6" className="w-full border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-primary" />
+            </div>
+          </div>
+
+          <div className="mt-8 border-t border-white/10 pt-6">
+            <div className="font-serif text-4xl font-bold text-white">
+              {cubicYards ? `${cubicYards.toFixed(1)} cubic yards` : "—"}
+            </div>
+            <p className="mt-2 font-sans text-sm text-white/60">
+              At $45/yard, that's about {cubicYards ? `$${(cubicYards * 45).toFixed(0)}` : "—"} in material. Call {PHONE} for a delivery quote.
+            </p>
           </div>
         </div>
       </section>
@@ -530,8 +612,9 @@ function Index() {
                   </div>
                   <Field label="Phone Number" name="phone" type="tel" placeholder="845-555-0100" />
                   <div className="mb-4">
-                    <label htmlFor="contact-service" className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/50">What do you need?</label>
-                    <select id="contact-service" name="service" className="w-full appearance-none border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white outline-none focus:border-primary">
+                    <label id="contact-service-label" htmlFor="contact-service" className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/80">What do you need?</label>
+                    <select id="contact-service" name="service" aria-labelledby="contact-service-label" className="w-full appearance-none border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white outline-none focus:border-primary">
+
                       <option value="" disabled>Select a service...</option>
                       <option>Topsoil Delivery</option>
                       <option>Loam Delivery</option>
