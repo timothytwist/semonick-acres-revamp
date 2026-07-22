@@ -563,8 +563,9 @@ function Index() {
                   </div>
                   <Field label="Phone Number" name="phone" type="tel" placeholder="845-555-0100" />
                   <div className="mb-4">
-                    <label htmlFor="contact-service" className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/50">What do you need?</label>
-                    <select id="contact-service" name="service" className="w-full appearance-none border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white outline-none focus:border-primary">
+                    <label id="contact-service-label" htmlFor="contact-service" className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/80">What do you need?</label>
+                    <select id="contact-service" name="service" aria-labelledby="contact-service-label" className="w-full appearance-none border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white outline-none focus:border-primary">
+
                       <option value="" disabled>Select a service...</option>
                       <option>Topsoil Delivery</option>
                       <option>Loam Delivery</option>
