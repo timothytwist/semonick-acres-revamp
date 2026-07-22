@@ -431,6 +431,43 @@ function Index() {
         </div>
       </section>
 
+      {/* CALCULATOR */}
+      <section id="calculator" className="bg-[color:var(--secondary)] py-20 text-white">
+        <div className="mx-auto max-w-[1100px] px-6">
+          <SectionLabel light>Material Estimator</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold text-white md:text-5xl">
+            Topsoil <em className="not-italic text-primary">Calculator</em>
+          </h2>
+          <p className="mt-4 max-w-2xl font-sans text-white/70">
+            Estimate how many cubic yards your project needs. Enter the area length, width, and desired depth. Call {PHONE} for a delivery quote — 3-yard minimum.
+          </p>
+
+          <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+            <div>
+              <label htmlFor="calc-length" className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/80">Length (ft)</label>
+              <input id="calc-length" type="number" min="0" step="0.1" value={length} onChange={(e) => setLength(e.target.value)} placeholder="e.g. 40" className="w-full border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-primary" />
+            </div>
+            <div>
+              <label htmlFor="calc-width" className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/80">Width (ft)</label>
+              <input id="calc-width" type="number" min="0" step="0.1" value={width} onChange={(e) => setWidth(e.target.value)} placeholder="e.g. 20" className="w-full border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-primary" />
+            </div>
+            <div>
+              <label htmlFor="calc-depth" className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/80">Depth (inches)</label>
+              <input id="calc-depth" type="number" min="0" step="0.25" value={depth} onChange={(e) => setDepth(e.target.value)} placeholder="e.g. 6" className="w-full border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-primary" />
+            </div>
+          </div>
+
+          <div className="mt-8 border-t border-white/10 pt-6">
+            <div className="font-serif text-4xl font-bold text-white">
+              {cubicYards ? `${cubicYards.toFixed(1)} cubic yards` : "—"}
+            </div>
+            <p className="mt-2 font-sans text-sm text-white/60">
+              At $45/yard, that's about {cubicYards ? `$${(cubicYards * 45).toFixed(0)}` : "—"} in material. Call {PHONE} for a delivery quote.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* COVERAGE */}
       <section id="coverage" className="bg-muted py-20">
         <div className="mx-auto max-w-[1100px] px-6">
