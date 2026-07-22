@@ -131,9 +131,9 @@ const products = [
 ];
 
 const services = [
-  { title: "Organic Screened Topsoil", body: "Premium topsoil screened to ¾\" for consistent quality. Ideal for residential lawns, grading, raised beds, and large-scale land improvement projects.", badge: "Screened to ¾\"" },
-  { title: "Loam", body: "Quality loam for construction sites, landscape grading, and agricultural use. Contact us for volume pricing and availability." },
-  { title: "Approved Septic Fill", body: "State-approved fill material for septic system installations. Meets regulatory requirements for proper drainage and compaction.", badge: "Approved Material" },
+  { title: "Organic Screened Topsoil", body: "Premium topsoil screened to ¾\" for consistent quality. Ideal for residential lawns, grading, raised beds, and large-scale land improvement projects.", badge: "Screened to ¾\"", image: conveyorAsset.url },
+  { title: "Loam", body: "Quality loam for construction sites, landscape grading, and agricultural use. Contact us for volume pricing and availability.", image: loamAsset.url, filter: "brightness-110" },
+  { title: "Approved Septic Fill", body: "State-approved fill material for septic system installations. Meets regulatory requirements for proper drainage and compaction.", badge: "Approved Material", image: septicFillAsset.url },
   { title: "Septic System Installation", body: "Full septic system installation by an experienced family crew. We handle the complete job from planning through completion.", badge: "Full Service" },
   { title: "Driveway Installation", body: "Professional driveway installation and grading. From prep work to final surface, we build driveways that last. Call for a quote.", badge: "Full Service" },
   { title: "Bulk Wholesale Pricing", body: "Contractors, developers, and landscapers — volume pricing available for large orders. Call to discuss your project and get a custom quote.", badge: "Volume Pricing Available" },
