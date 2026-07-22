@@ -328,6 +328,44 @@ function Index() {
         </div>
       </section>
 
+      {/* TOPSOIL VS LOAM GUIDE */}
+      <section className="bg-muted py-20">
+        <div className="mx-auto max-w-[1100px] px-6">
+          <SectionLabel>Which Material Is Right?</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold md:text-5xl">
+            Topsoil <em className="not-italic text-primary">vs.</em> Loam
+          </h2>
+          <p className="mt-4 max-w-2xl font-sans text-muted-foreground">
+            Both are quality screened materials, but they serve different jobs. Here's how to choose the right one for your project.
+          </p>
+
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="border border-border bg-white p-8">
+              <h3 className="font-serif text-xl font-bold text-[color:var(--secondary)]">Organic Screened Topsoil</h3>
+              <p className="mt-3 font-sans text-sm leading-[1.7] text-muted-foreground">
+                A nutrient-rich, dark blend ideal for growing. It's screened to ¾" to remove debris and clumps, making it perfect for lawns, raised beds, gardens, and finish grading where plants will grow. Use it when you need a living soil layer.
+              </p>
+              <ul className="mt-4 list-disc space-y-1 pl-5 font-sans text-sm text-muted-foreground">
+                <li>Best for: lawns, gardens, planting beds, turf prep</li>
+                <li>Texture: rich, organic, holds moisture and nutrients</li>
+                <li>Screened to ¾" for consistency</li>
+              </ul>
+            </div>
+            <div className="border border-border bg-white p-8">
+              <h3 className="font-serif text-xl font-bold text-[color:var(--secondary)]">Loam</h3>
+              <p className="mt-3 font-sans text-sm leading-[1.7] text-muted-foreground">
+                A balanced soil with more sand, silt, and clay than raw topsoil. It drains well and compacts evenly, which makes it a go-to for structural grading, backfill, construction pads, and sub-grade work where stability matters more than fertility.
+              </p>
+              <ul className="mt-4 list-disc space-y-1 pl-5 font-sans text-sm text-muted-foreground">
+                <li>Best for: backfill, grading, construction pads, sub-base</li>
+                <li>Texture: balanced, drains well, compacts evenly</li>
+                <li>Works under hardscape, turf, and drainage systems</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* SERVICES */}
       <section id="services" className="py-20">
         <div className="mx-auto max-w-[1100px] px-6">
