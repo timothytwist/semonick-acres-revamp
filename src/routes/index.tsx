@@ -165,6 +165,17 @@ function SectionLabel({ children, light = false }: { children: React.ReactNode; 
 function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [submitted, setSubmitted] = useState(false);
+  const [length, setLength] = useState("");
+  const [width, setWidth] = useState("");
+  const [depth, setDepth] = useState("");
+
+  const cubicYards = useMemo(() => {
+    const l = parseFloat(length);
+    const w = parseFloat(width);
+    const d = parseFloat(depth);
+    if (!l || !w || !d) return 0;
+    return (l * w * (d / 12)) / 27;
+  }, [length, width, depth]);
 
   return (
     <div className="min-h-screen bg-background font-serif text-foreground">
