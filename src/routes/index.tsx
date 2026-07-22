@@ -312,7 +312,7 @@ function Index() {
                 <div className="mb-5 flex h-[150px] items-center justify-center overflow-hidden bg-muted">
                   <img
                     src={p.image ?? heroAsset.url}
-                    alt={p.title}
+                    alt={p.alt || p.title}
                     className={`h-full w-full object-cover ${p.filter ?? ""}`}
                     loading="lazy"
                   />
