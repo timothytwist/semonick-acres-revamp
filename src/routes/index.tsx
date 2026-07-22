@@ -584,7 +584,7 @@ function Index() {
                       <span className="block h-2 w-2 bg-[color:var(--accent)]" />
                     </div>
                     <div>
-                      <h4 className="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[color:var(--accent)]">{d.label}</h4>
+                      <h3 className="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[color:var(--accent)]">{d.label}</h3>
                       {d.href ? (
                         <a href={d.href} className="mt-1 block font-sans text-[0.95rem] text-white hover:text-[color:var(--accent)]">{d.value}</a>
                       ) : (
@@ -685,7 +685,7 @@ function Field({ label, name, type = "text", placeholder }: { label: string; nam
 function FooterCol({ title, items }: { title: string; items: string[] }) {
   return (
     <div>
-      <h4 className="mb-3.5 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[color:var(--accent)]">{title}</h4>
+      <h3 className="mb-3.5 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[color:var(--accent)]">{title}</h3>
       <ul className="list-none">
         {items.map((item) => (
           <li key={item} className="py-1 font-sans text-[0.83rem]">{item}</li>
