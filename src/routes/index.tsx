@@ -105,31 +105,6 @@ const gallery = [
 const PHONE = "845-551-7345";
 const TEL = "+18455517345";
 
-const products = [
-  {
-    tag: "Best Seller",
-    title: "Organic Screened Topsoil",
-    body: "Screened to ¾\" for a clean, consistent material. Suitable for lawns, gardens, fill, and large-scale grading. Tested and proven across hundreds of local projects.",
-    image: conveyorAsset.url,
-    alt: "Organic screened topsoil pile",
-  },
-  {
-    tag: "Available",
-    title: "Loam",
-    body: "Quality loam for a wide range of construction and landscape applications. Call for pricing and to confirm current availability.",
-    image: loamAsset.url,
-    filter: "brightness-110",
-    alt: "Screened loam pile",
-  },
-  {
-    tag: "Approved",
-    title: "Approved Septic Fill",
-    body: "Fill material meeting state approval standards for septic system use. Proper drainage characteristics for compliant installation.",
-    image: septicFillAsset.url,
-    alt: "Approved septic fill loader",
-  },
-];
-
 const services = [
   { title: "Organic Screened Topsoil", body: "Premium topsoil screened to ¾\" for consistent quality. Ideal for residential lawns, grading, raised beds, and large-scale land improvement projects.", badge: "Screened to ¾\"", image: conveyorAsset.url },
   { title: "Loam", body: "Quality loam for construction sites, landscape grading, and agricultural use. Contact us for volume pricing and availability.", image: loamAsset.url, filter: "brightness-110" },
