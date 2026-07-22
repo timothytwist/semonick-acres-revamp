@@ -196,6 +196,7 @@ function Index() {
               ["Services", "#services"],
               ["Gallery", "#gallery"],
               ["Pricing", "#delivery"],
+              ["Calculator", "#calculator"],
               ["Coverage", "#coverage"],
               ["FAQ", "#faq"],
               ["Contact", "#contact"],
