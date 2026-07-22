@@ -82,7 +82,7 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 
 const gallery = [
