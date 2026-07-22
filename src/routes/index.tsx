@@ -38,16 +38,67 @@ const faqs = [
 
 const localBusinessLd = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": ["LocalBusiness", "Store"],
+  "@id": "https://semonickacres.com/#business",
   "name": "Semonick Acres Farm",
+  "alternateName": "Semonick Acres",
   "description": "Wholesale organic screened topsoil, approved septic fill, and loam delivered to Sullivan, Ulster, and Orange Counties from Ellenville, NY.",
   "telephone": "+18455517345",
   "url": "https://semonickacres.com/",
+  "image": "https://semonickacres.com/og-image.jpg",
+  "priceRange": "$45/yard, 3-yard minimum",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Ellenville",
+    "addressRegion": "NY",
+    "postalCode": "12428",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 41.7178,
+    "longitude": -74.3960
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "07:00",
+      "closes": "17:00"
+    }
+  ],
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 41.7178,
+      "longitude": -74.3960
+    },
+    "geoRadius": "40000"
+  },
   "areaServed": [
     { "@type": "AdministrativeArea", "name": "Sullivan County, NY" },
     { "@type": "AdministrativeArea", "name": "Ulster County, NY" },
     { "@type": "AdministrativeArea", "name": "Orange County, NY" },
+    { "@type": "City", "name": "Ellenville, NY" },
+    { "@type": "City", "name": "Kerhonkson, NY" },
+    { "@type": "City", "name": "Wurtsboro, NY" },
+    { "@type": "City", "name": "Monticello, NY" },
+    { "@type": "City", "name": "Middletown, NY" },
+    { "@type": "City", "name": "New Paltz, NY" },
+    { "@type": "City", "name": "Kingston, NY" },
   ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Bulk Materials & Site Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Organic Screened Topsoil" }, "price": "45", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "45", "priceCurrency": "USD", "unitCode": "YDQ", "unitText": "cubic yard" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Approved Septic Fill" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Loam" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Septic System Installation" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Driveway Installation" } }
+    ]
+  }
 };
 
 const faqPageLd = {
@@ -73,6 +124,13 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: "Wholesale organic screened topsoil, approved septic fill, and loam. Sullivan · Ulster · Orange Counties." },
       { property: "og:url", content: "https://semonickacres.com/" },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_US" },
+      { property: "og:site_name", content: "Semonick Acres" },
+      { name: "keywords", content: "topsoil Ellenville NY, wholesale topsoil Hudson Valley, screened topsoil Sullivan County, septic fill Ulster County, loam Orange County NY, bulk topsoil delivery Ellenville, contractor topsoil Hudson Valley" },
+      { name: "geo.region", content: "US-NY" },
+      { name: "geo.placename", content: "Ellenville, New York" },
+      { name: "geo.position", content: "41.7178;-74.3960" },
+      { name: "ICBM", content: "41.7178, -74.3960" },
     ],
     links: [{ rel: "canonical", href: "https://semonickacres.com/" }],
     scripts: [
