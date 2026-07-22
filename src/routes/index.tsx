@@ -111,6 +111,7 @@ const products = [
     title: "Organic Screened Topsoil",
     body: "Screened to ¾\" for a clean, consistent material. Suitable for lawns, gardens, fill, and large-scale grading. Tested and proven across hundreds of local projects.",
     image: conveyorAsset.url,
+    alt: "Organic screened topsoil pile",
   },
   {
     tag: "Available",
@@ -118,12 +119,14 @@ const products = [
     body: "Quality loam for a wide range of construction and landscape applications. Call for pricing and to confirm current availability.",
     image: loamAsset.url,
     filter: "brightness-110",
+    alt: "Screened loam pile",
   },
   {
     tag: "Approved",
     title: "Approved Septic Fill",
     body: "Fill material meeting state approval standards for septic system use. Proper drainage characteristics for compliant installation.",
     image: septicFillAsset.url,
+    alt: "Approved septic fill loader",
   },
 ];
 
@@ -309,7 +312,7 @@ function Index() {
                 <div className="mb-5 flex h-[150px] items-center justify-center overflow-hidden bg-muted">
                   <img
                     src={p.image ?? heroAsset.url}
-                    alt={p.title}
+                    alt={p.alt || p.title}
                     className={`h-full w-full object-cover ${p.filter ?? ""}`}
                     loading="lazy"
                   />
@@ -321,6 +324,44 @@ function Index() {
                 <p className="font-sans text-sm leading-[1.65] text-muted-foreground">{p.body}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TOPSOIL VS LOAM GUIDE */}
+      <section className="bg-muted py-20">
+        <div className="mx-auto max-w-[1100px] px-6">
+          <SectionLabel>Which Material Is Right?</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold md:text-5xl">
+            Topsoil <em className="not-italic text-primary">vs.</em> Loam
+          </h2>
+          <p className="mt-4 max-w-2xl font-sans text-muted-foreground">
+            Both are quality screened materials, but they serve different jobs. Here's how to choose the right one for your project.
+          </p>
+
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="border border-border bg-white p-8">
+              <h3 className="font-serif text-xl font-bold text-[color:var(--secondary)]">Organic Screened Topsoil</h3>
+              <p className="mt-3 font-sans text-sm leading-[1.7] text-muted-foreground">
+                A nutrient-rich, dark blend ideal for growing. It's screened to ¾" to remove debris and clumps, making it perfect for lawns, raised beds, gardens, and finish grading where plants will grow. Use it when you need a living soil layer.
+              </p>
+              <ul className="mt-4 list-disc space-y-1 pl-5 font-sans text-sm text-muted-foreground">
+                <li>Best for: lawns, gardens, planting beds, turf prep</li>
+                <li>Texture: rich, organic, holds moisture and nutrients</li>
+                <li>Screened to ¾" for consistency</li>
+              </ul>
+            </div>
+            <div className="border border-border bg-white p-8">
+              <h3 className="font-serif text-xl font-bold text-[color:var(--secondary)]">Loam</h3>
+              <p className="mt-3 font-sans text-sm leading-[1.7] text-muted-foreground">
+                A balanced soil with more sand, silt, and clay than raw topsoil. It drains well and compacts evenly, which makes it a go-to for structural grading, backfill, construction pads, and sub-grade work where stability matters more than fertility.
+              </p>
+              <ul className="mt-4 list-disc space-y-1 pl-5 font-sans text-sm text-muted-foreground">
+                <li>Best for: backfill, grading, construction pads, sub-base</li>
+                <li>Texture: balanced, drains well, compacts evenly</li>
+                <li>Works under hardscape, turf, and drainage systems</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -581,7 +622,7 @@ function Index() {
                       <span className="block h-2 w-2 bg-[color:var(--accent)]" />
                     </div>
                     <div>
-                      <h4 className="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[color:var(--accent)]">{d.label}</h4>
+                      <h3 className="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[color:var(--accent)]">{d.label}</h3>
                       {d.href ? (
                         <a href={d.href} className="mt-1 block font-sans text-[0.95rem] text-white hover:text-[color:var(--accent)]">{d.value}</a>
                       ) : (
@@ -682,7 +723,7 @@ function Field({ label, name, type = "text", placeholder }: { label: string; nam
 function FooterCol({ title, items }: { title: string; items: string[] }) {
   return (
     <div>
-      <h4 className="mb-3.5 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[color:var(--accent)]">{title}</h4>
+      <h3 className="mb-3.5 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[color:var(--accent)]">{title}</h3>
       <ul className="list-none">
         {items.map((item) => (
           <li key={item} className="py-1 font-sans text-[0.83rem]">{item}</li>
