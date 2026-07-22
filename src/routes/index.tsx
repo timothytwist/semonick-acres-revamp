@@ -105,35 +105,10 @@ const gallery = [
 const PHONE = "845-551-7345";
 const TEL = "+18455517345";
 
-const products = [
-  {
-    tag: "Best Seller",
-    title: "Organic Screened Topsoil",
-    body: "Screened to ¾\" for a clean, consistent material. Suitable for lawns, gardens, fill, and large-scale grading. Tested and proven across hundreds of local projects.",
-    image: conveyorAsset.url,
-    alt: "Organic screened topsoil pile",
-  },
-  {
-    tag: "Available",
-    title: "Loam",
-    body: "Quality loam for a wide range of construction and landscape applications. Call for pricing and to confirm current availability.",
-    image: loamAsset.url,
-    filter: "brightness-110",
-    alt: "Screened loam pile",
-  },
-  {
-    tag: "Approved",
-    title: "Approved Septic Fill",
-    body: "Fill material meeting state approval standards for septic system use. Proper drainage characteristics for compliant installation.",
-    image: septicFillAsset.url,
-    alt: "Approved septic fill loader",
-  },
-];
-
 const services = [
-  { title: "Organic Screened Topsoil", body: "Premium topsoil screened to ¾\" for consistent quality. Ideal for residential lawns, grading, raised beds, and large-scale land improvement projects.", badge: "Screened to ¾\"" },
-  { title: "Loam", body: "Quality loam for construction sites, landscape grading, and agricultural use. Contact us for volume pricing and availability." },
-  { title: "Approved Septic Fill", body: "State-approved fill material for septic system installations. Meets regulatory requirements for proper drainage and compaction.", badge: "Approved Material" },
+  { title: "Organic Screened Topsoil", body: "Premium topsoil screened to ¾\" for consistent quality. Ideal for residential lawns, grading, raised beds, and large-scale land improvement projects.", badge: "Screened to ¾\"", image: conveyorAsset.url },
+  { title: "Loam", body: "Quality loam for construction sites, landscape grading, and agricultural use. Contact us for volume pricing and availability.", image: loamAsset.url, filter: "brightness-110" },
+  { title: "Approved Septic Fill", body: "State-approved fill material for septic system installations. Meets regulatory requirements for proper drainage and compaction.", badge: "Approved Material", image: septicFillAsset.url },
   { title: "Septic System Installation", body: "Full septic system installation by an experienced family crew. We handle the complete job from planning through completion.", badge: "Full Service" },
   { title: "Driveway Installation", body: "Professional driveway installation and grading. From prep work to final surface, we build driveways that last. Call for a quote.", badge: "Full Service" },
   { title: "Bulk Wholesale Pricing", body: "Contractors, developers, and landscapers — volume pricing available for large orders. Call to discuss your project and get a custom quote.", badge: "Volume Pricing Available" },
@@ -197,12 +172,12 @@ function Index() {
           <ul className="hidden items-center gap-6 md:flex">
             {[
               ["Services", "#services"],
-              ["Gallery", "#gallery"],
-              ["Pricing", "#delivery"],
               ["Calculator", "#calculator"],
-              ["Coverage", "#coverage"],
+              ["Quote", "#contact"],
+              ["Gallery", "#gallery"],
+              ["Why Us", "#why"],
               ["FAQ", "#faq"],
-              ["Contact", "#contact"],
+              ["Coverage", "#coverage"],
             ].map(([label, href]) => (
               <li key={label}>
                 <a href={href} className="font-sans text-[0.82rem] uppercase tracking-[0.06em] text-[color:var(--muted)] transition hover:text-[color:var(--accent)]">
@@ -292,8 +267,8 @@ function Index() {
         </div>
       </section>
 
-      {/* PRODUCTS */}
-      <section className="relative overflow-hidden bg-secondary py-20">
+      {/* PRODUCTS & SERVICES (combined) */}
+      <section id="services" className="relative overflow-hidden bg-secondary py-20">
         <img
           src={conveyorAsset.url}
           alt="Conveyor piling organic screened topsoil"
@@ -301,82 +276,25 @@ function Index() {
         />
         <div className="absolute inset-0 bg-secondary/60" />
         <div className="relative z-10 mx-auto max-w-[1100px] px-6">
-          <SectionLabel light>Material Detail</SectionLabel>
+          <SectionLabel light>What We Offer</SectionLabel>
           <h2 className="font-serif text-4xl font-bold text-white md:text-5xl">
-            What You're <em className="not-italic text-primary">Getting</em>
-          </h2>
-
-          <div className="mt-9 grid grid-cols-1 gap-[2px] bg-border md:grid-cols-3">
-            {products.map((p) => (
-              <div key={p.title} className="flex flex-col bg-white p-8">
-                <div className="mb-5 flex h-[150px] items-center justify-center overflow-hidden bg-muted">
-                  <img
-                    src={p.image ?? heroAsset.url}
-                    alt={p.alt || p.title}
-                    className={`h-full w-full object-cover ${p.filter ?? ""}`}
-                    loading="lazy"
-                  />
-                </div>
-                <span className="mb-4 inline-block w-fit bg-[color:var(--field)] px-2 py-[3px] font-sans text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-white">
-                  {p.tag}
-                </span>
-                <h2 className="mb-2 font-serif text-lg font-bold text-[color:var(--secondary)]">{p.title}</h2>
-                <p className="font-sans text-sm leading-[1.65] text-muted-foreground">{p.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* TOPSOIL VS LOAM GUIDE */}
-      <section className="bg-muted py-20">
-        <div className="mx-auto max-w-[1100px] px-6">
-          <SectionLabel>Which Material Is Right?</SectionLabel>
-          <h2 className="font-serif text-4xl font-bold md:text-5xl">
-            Topsoil <em className="not-italic text-primary">vs.</em> Loam
-          </h2>
-          <p className="mt-4 max-w-2xl font-sans text-muted-foreground">
-            Both are quality screened materials, but they serve different jobs. Here's how to choose the right one for your project.
-          </p>
-
-          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
-            <div className="border border-border bg-white p-8">
-              <h3 className="font-serif text-xl font-bold text-[color:var(--secondary)]">Organic Screened Topsoil</h3>
-              <p className="mt-3 font-sans text-sm leading-[1.7] text-muted-foreground">
-                A nutrient-rich, dark blend ideal for growing. It's screened to ¾" to remove debris and clumps, making it perfect for lawns, raised beds, gardens, and finish grading where plants will grow. Use it when you need a living soil layer.
-              </p>
-              <ul className="mt-4 list-disc space-y-1 pl-5 font-sans text-sm text-muted-foreground">
-                <li>Best for: lawns, gardens, planting beds, turf prep</li>
-                <li>Texture: rich, organic, holds moisture and nutrients</li>
-                <li>Screened to ¾" for consistency</li>
-              </ul>
-            </div>
-            <div className="border border-border bg-white p-8">
-              <h3 className="font-serif text-xl font-bold text-[color:var(--secondary)]">Loam</h3>
-              <p className="mt-3 font-sans text-sm leading-[1.7] text-muted-foreground">
-                A balanced soil with more sand, silt, and clay than raw topsoil. It drains well and compacts evenly, which makes it a go-to for structural grading, backfill, construction pads, and sub-grade work where stability matters more than fertility.
-              </p>
-              <ul className="mt-4 list-disc space-y-1 pl-5 font-sans text-sm text-muted-foreground">
-                <li>Best for: backfill, grading, construction pads, sub-base</li>
-                <li>Texture: balanced, drains well, compacts evenly</li>
-                <li>Works under hardscape, turf, and drainage systems</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SERVICES */}
-      <section id="services" className="py-20">
-        <div className="mx-auto max-w-[1100px] px-6">
-          <SectionLabel>What We Offer</SectionLabel>
-          <h2 className="font-serif text-4xl font-bold md:text-5xl">
             Products <em className="not-italic text-primary">&amp;</em> Services
           </h2>
 
           <div className="mt-9 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((s) => (
-              <div key={s.title} className="flex flex-col border border-border bg-white p-7 transition hover:border-primary hover:shadow-md">
+              <div key={s.title} className="flex flex-col border border-border bg-white transition hover:border-primary hover:shadow-md">
+                {s.image && (
+                  <div className="h-[170px] overflow-hidden bg-muted">
+                    <img
+                      src={s.image}
+                      alt={s.title}
+                      loading="lazy"
+                      className={`h-full w-full object-cover ${s.filter ?? ""}`}
+                    />
+                  </div>
+                )}
+                <div className="flex flex-1 flex-col p-7">
                 <h2 className="font-serif text-lg font-bold text-[color:var(--secondary)]">{s.title}</h2>
                 <p className="mt-2 flex-1 font-sans text-sm leading-[1.65] text-muted-foreground">{s.body}</p>
                 {s.badge && (
@@ -384,88 +302,7 @@ function Index() {
                     {s.badge}
                   </span>
                 )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* GALLERY */}
-      <section id="gallery" className="flex min-h-screen flex-col bg-secondary py-20">
-        <div className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col px-6">
-          <SectionLabel light>From the Yard</SectionLabel>
-          <h2 className="font-serif text-4xl font-bold text-white md:text-5xl">
-            On the <em className="not-italic text-primary">Job</em>
-          </h2>
-          <p className="mt-4 max-w-2xl font-sans text-white/70">
-            A look at our equipment, screening operation, and delivery fleet in action at the Ellenville yard.
-          </p>
-
-          <Carousel opts={{ loop: true, align: "start" }} className="mt-10 h-[calc(100vh-16rem)] w-full pl-4">
-            <CarouselContent className="h-full">
-              {gallery.map((g) => (
-                <CarouselItem key={g.src} className="h-full min-h-0 pl-0 md:basis-1/2 lg:basis-1/3">
-                  <figure className="relative h-full overflow-hidden">
-                    <img
-                      src={g.src}
-                      alt={g.caption}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition duration-500 hover:scale-105"
-                    />
-                    <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 font-sans text-xs uppercase tracking-[0.08em] text-white">
-                      {g.caption}
-                    </figcaption>
-                  </figure>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-2 border-white/20 bg-black/40 text-white hover:bg-black/60 hover:text-white" />
-            <CarouselNext className="right-2 border-white/20 bg-black/40 text-white hover:bg-black/60 hover:text-white" />
-          </Carousel>
-        </div>
-      </section>
-
-      {/* WHY US */}
-      <section className="bg-muted py-20">
-        <div className="mx-auto max-w-[1100px] px-6">
-          <SectionLabel>Why Semonick Acres</SectionLabel>
-          <h2 className="font-serif text-4xl font-bold md:text-5xl">
-            What Sets Us <em className="not-italic text-primary">Apart</em>
-          </h2>
-
-          <div className="mt-9 grid grid-cols-1 gap-[2px] bg-border md:grid-cols-2 lg:grid-cols-3">
-            {why.map((w) => (
-              <div key={w.title} className="bg-white p-7">
-                <div className="mb-4 h-1 w-10 bg-primary" />
-                <h2 className="font-serif text-lg font-bold text-[color:var(--secondary)]">{w.title}</h2>
-                <p className="mt-2 font-sans text-sm leading-[1.65] text-muted-foreground">{w.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PRICING / DELIVERY BAND */}
-      <section id="delivery" className="bg-white py-20">
-        <div className="mx-auto max-w-[1100px] px-6">
-          <SectionLabel>Straight Pricing</SectionLabel>
-          <h2 className="font-serif text-4xl font-bold md:text-5xl">
-            <em className="not-italic text-primary">$45</em> Yard — call for Delivery Quote
-          </h2>
-          <p className="mt-4 max-w-2xl font-sans text-muted-foreground">
-            3-yard minimum. Within 25 miles of Ellenville, NY. Bulk and contractor pricing negotiated over the phone.
-          </p>
-
-          <div className="mt-10 grid grid-cols-2 gap-[2px] bg-border md:grid-cols-4">
-            {[
-              ["$45", "Yard — call for quote"],
-              ["3 Yd", "Minimum order"],
-              ["25 mi", "Standard radius"],
-              ["Mon–Fri", "Delivery days"],
-            ].map(([n, l]) => (
-              <div key={l} className="bg-white p-6">
-                <div className="font-serif text-3xl font-bold text-primary">{n}</div>
-                <div className="mt-1 font-sans text-xs uppercase tracking-wider text-muted-foreground">{l}</div>
+                </div>
               </div>
             ))}
           </div>
@@ -509,7 +346,211 @@ function Index() {
         </div>
       </section>
 
-      {/* COVERAGE */}
+      {/* REQUEST A QUOTE + STRAIGHT PRICING (combined) */}
+      <section id="contact" className="bg-white py-20">
+        <div className="mx-auto max-w-[1100px] px-6">
+          <SectionLabel>Straight Pricing · Request a Quote</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold md:text-5xl">
+            <em className="not-italic text-primary">$45</em> Yard — call for Delivery Quote
+          </h2>
+          <p className="mt-4 max-w-2xl font-sans text-muted-foreground">
+            3-yard minimum. Within 25 miles of Ellenville, NY. Bulk and contractor pricing negotiated over the phone.
+          </p>
+
+          {/* Prominent phone CTA */}
+          <div className="mt-8 flex flex-col items-start gap-4 border-l-[4px] border-primary bg-muted p-6 md:flex-row md:items-center md:justify-between">
+            <div>
+              <div className="font-sans text-[0.72rem] font-bold uppercase tracking-[0.15em] text-muted-foreground">Fastest way to a quote</div>
+              <a href={`tel:${TEL}`} className="mt-1 block font-serif text-3xl font-bold text-primary hover:text-[color:var(--primary-dark)] md:text-4xl">
+                {PHONE}
+              </a>
+              <div className="mt-1 font-sans text-xs uppercase tracking-wider text-muted-foreground">Mon–Fri · Family Owned · Talk to a real person</div>
+            </div>
+            <a href={`tel:${TEL}`} className="inline-flex items-center gap-3 bg-primary px-6 py-4 font-sans text-sm font-bold uppercase tracking-wider text-primary-foreground transition hover:bg-[color:var(--primary-dark)]">
+              <PhoneIcon className="h-4 w-4" />
+              Call {PHONE}
+            </a>
+          </div>
+
+          <div className="mt-10 grid grid-cols-2 gap-[2px] bg-border md:grid-cols-4">
+            {[
+              ["$45", "Yard — call for quote"],
+              ["3 Yd", "Minimum order"],
+              ["25 mi", "Standard radius"],
+              ["Mon–Fri", "Delivery days"],
+            ].map(([n, l]) => (
+              <div key={l} className="bg-white p-6">
+                <div className="font-serif text-3xl font-bold text-primary">{n}</div>
+                <div className="mt-1 font-sans text-xs uppercase tracking-wider text-muted-foreground">{l}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-14 grid grid-cols-1 items-start gap-14 md:grid-cols-2">
+            <div>
+              <h3 className="font-serif text-2xl font-bold text-[color:var(--secondary)]">Prefer to send details?</h3>
+              <p className="mt-3 font-sans text-[0.92rem] leading-[1.7] text-muted-foreground">
+                Fill out the form and we'll get back to you. For faster service — especially for same-week delivery — a phone call is best.
+              </p>
+
+              <div className="mt-8 space-y-5">
+                {[
+                  { label: "Call or Text", value: PHONE, href: `tel:${TEL}` },
+                  { label: "Based In", value: "Ellenville, New York" },
+                  { label: "Delivery Days", value: "Monday – Friday" },
+                  { label: "Service Area", value: "Sullivan · Ulster · Orange Counties" },
+                ].map((d) => (
+                  <div key={d.label} className="flex items-start gap-4">
+                    <div className="grid h-11 w-11 shrink-0 place-items-center bg-muted">
+                      <span className="block h-2 w-2 bg-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-primary">{d.label}</h4>
+                      {d.href ? (
+                        <a href={d.href} className="mt-1 block font-sans text-[0.95rem] text-foreground hover:text-primary">{d.value}</a>
+                      ) : (
+                        <p className="mt-1 font-sans text-[0.95rem] text-foreground">{d.value}</p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-[color:var(--secondary)] p-8 text-white">
+              {submitted ? (
+                <p className="font-sans text-[0.9rem] text-[color:var(--accent)]">
+                  Thanks! We'll be in touch shortly. For faster service, call {PHONE}.
+                </p>
+              ) : (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setSubmitted(true);
+                  }}
+                  className="font-sans"
+                >
+                  <div className="grid grid-cols-2 gap-3">
+                    <Field label="First Name" name="fname" placeholder="John" />
+                    <Field label="Last Name" name="lname" placeholder="Smith" />
+                  </div>
+                  <Field label="Phone Number" name="phone" type="tel" placeholder="845-555-0100" />
+                  <div className="mb-4">
+                    <label id="contact-service-label" htmlFor="contact-service" className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/80">What do you need?</label>
+                    <select id="contact-service" name="service" aria-labelledby="contact-service-label" className="w-full appearance-none border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white outline-none focus:border-primary">
+                      <option value="" disabled>Select a service...</option>
+                      <option>Topsoil Delivery</option>
+                      <option>Loam Delivery</option>
+                      <option>Approved Septic Fill</option>
+                      <option>Septic System Installation</option>
+                      <option>Driveway Installation</option>
+                      <option>Bulk / Wholesale Order</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <Field label="Approximate Yards Needed" name="yards" placeholder="e.g. 10 yards" />
+                  <div className="mb-4">
+                    <label htmlFor="contact-details" className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/80">Project Details</label>
+                    <textarea id="contact-details" name="details" rows={4} placeholder="Tell us about your project, site location, and timeline..." className="w-full border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-primary" />
+                  </div>
+                  <button type="submit" className="mt-2 flex w-full items-center justify-center gap-2 bg-primary px-8 py-3.5 text-sm font-bold uppercase tracking-wider text-primary-foreground transition hover:bg-[color:var(--primary-dark)]">
+                    Send Message
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ON THE JOB (gallery) */}
+      <section id="gallery" className="flex min-h-screen flex-col bg-secondary py-20">
+        <div className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col px-6">
+          <SectionLabel light>From the Yard</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold text-white md:text-5xl">
+            On the <em className="not-italic text-primary">Job</em>
+          </h2>
+          <p className="mt-4 max-w-2xl font-sans text-white/70">
+            A look at our equipment, screening operation, and delivery fleet in action at the Ellenville yard.
+          </p>
+
+          <Carousel opts={{ loop: true, align: "start" }} className="mt-10 h-[calc(100vh-16rem)] w-full pl-4">
+            <CarouselContent className="h-full">
+              {gallery.map((g) => (
+                <CarouselItem key={g.src} className="h-full min-h-0 pl-0 md:basis-1/2 lg:basis-1/3">
+                  <figure className="relative h-full overflow-hidden">
+                    <img
+                      src={g.src}
+                      alt={g.caption}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                    />
+                    <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 font-sans text-xs uppercase tracking-[0.08em] text-white">
+                      {g.caption}
+                    </figcaption>
+                  </figure>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-2 border-white/20 bg-black/40 text-white hover:bg-black/60 hover:text-white" />
+            <CarouselNext className="right-2 border-white/20 bg-black/40 text-white hover:bg-black/60 hover:text-white" />
+          </Carousel>
+        </div>
+      </section>
+
+      {/* WHAT SETS US APART */}
+      <section id="why" className="bg-muted py-20">
+        <div className="mx-auto max-w-[1100px] px-6">
+          <SectionLabel>Why Semonick Acres</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold md:text-5xl">
+            What Sets Us <em className="not-italic text-primary">Apart</em>
+          </h2>
+
+          <div className="mt-9 grid grid-cols-1 gap-[2px] bg-border md:grid-cols-2 lg:grid-cols-3">
+            {why.map((w) => (
+              <div key={w.title} className="bg-white p-7">
+                <div className="mb-4 h-1 w-10 bg-primary" />
+                <h2 className="font-serif text-lg font-bold text-[color:var(--secondary)]">{w.title}</h2>
+                <p className="mt-2 font-sans text-sm leading-[1.65] text-muted-foreground">{w.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="bg-white py-20">
+        <div className="mx-auto max-w-[1100px] px-6">
+          <SectionLabel>Common Questions</SectionLabel>
+          <h2 className="font-serif text-4xl font-bold md:text-5xl">
+            Frequently <em className="not-italic text-primary">Asked</em>
+          </h2>
+
+          <div className="mt-9 grid grid-cols-1 gap-[2px] bg-border md:grid-cols-2">
+            {faqs.map(([q, a], i) => {
+              const open = openFaq === i;
+              return (
+                <div key={q} className={`bg-white border-t-[3px] transition ${open ? "border-primary" : "border-transparent"}`}>
+                  <button
+                    onClick={() => setOpenFaq(open ? null : i)}
+                    className="flex w-full items-center justify-between gap-4 px-7 py-6 text-left font-serif text-base leading-tight text-[color:var(--secondary)] hover:text-primary"
+                  >
+                    <span>{q}</span>
+                    <svg viewBox="0 0 24 24" className={`h-5 w-5 shrink-0 fill-current transition ${open ? "rotate-180" : ""}`}>
+                      <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2" />
+                    </svg>
+                  </button>
+                  {open && (
+                    <div className="px-7 pb-6 font-sans text-sm leading-[1.7] text-muted-foreground">{a}</div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICE AREA (coverage) */}
       <section id="coverage" className="bg-muted py-20">
         <div className="mx-auto max-w-[1100px] px-6">
           <div className="grid grid-cols-1 items-start gap-14 md:grid-cols-2">
@@ -559,123 +600,6 @@ function Index() {
                 <line x1="348" y1="397" x2="360" y2="397" stroke="#D4B878" strokeWidth="1.5" strokeDasharray="4 3" />
                 <text x="366" y="400" fontFamily="Arial,sans-serif" fontSize="11" fill="#1C1C1C">25-Mile Delivery</text>
               </svg>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section id="faq" className="py-20">
-        <div className="mx-auto max-w-[1100px] px-6">
-          <SectionLabel>Common Questions</SectionLabel>
-          <h2 className="font-serif text-4xl font-bold md:text-5xl">
-            Frequently <em className="not-italic text-primary">Asked</em>
-          </h2>
-
-          <div className="mt-9 grid grid-cols-1 gap-[2px] bg-border md:grid-cols-2">
-            {faqs.map(([q, a], i) => {
-              const open = openFaq === i;
-              return (
-                <div key={q} className={`bg-white border-t-[3px] transition ${open ? "border-primary" : "border-transparent"}`}>
-                  <button
-                    onClick={() => setOpenFaq(open ? null : i)}
-                    className="flex w-full items-center justify-between gap-4 px-7 py-6 text-left font-serif text-base leading-tight text-[color:var(--secondary)] hover:text-primary"
-                  >
-                    <span>{q}</span>
-                    <svg viewBox="0 0 24 24" className={`h-5 w-5 shrink-0 fill-current transition ${open ? "rotate-180" : ""}`}>
-                      <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2" />
-                    </svg>
-                  </button>
-                  {open && (
-                    <div className="px-7 pb-6 font-sans text-sm leading-[1.7] text-muted-foreground">{a}</div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* CONTACT */}
-      <section id="contact" className="bg-[color:var(--secondary)] py-20 text-white">
-        <div className="mx-auto max-w-[1100px] px-6">
-          <SectionLabel light>Get in Touch</SectionLabel>
-          <h2 className="font-serif text-4xl font-bold text-white md:text-5xl">
-            Request a <em className="not-italic text-primary">Quote</em>
-          </h2>
-
-          <div className="mt-10 grid grid-cols-1 items-start gap-14 md:grid-cols-2">
-            <div>
-              <p className="font-sans text-[0.92rem] leading-[1.7] text-white/70">
-                The fastest way to order or get a quote is a phone call. We're a small family operation — you'll talk to someone who can answer your questions and schedule your delivery on the spot.
-              </p>
-
-              <div className="mt-8 space-y-5">
-                {[
-                  { label: "Call or Text", value: PHONE, href: `tel:${TEL}` },
-                  { label: "Based In", value: "Ellenville, New York" },
-                  { label: "Delivery Days", value: "Monday – Friday" },
-                  { label: "Service Area", value: "Sullivan · Ulster · Orange Counties" },
-                ].map((d) => (
-                  <div key={d.label} className="flex items-start gap-4">
-                    <div className="grid h-11 w-11 shrink-0 place-items-center bg-white/5">
-                      <span className="block h-2 w-2 bg-[color:var(--accent)]" />
-                    </div>
-                    <div>
-                      <h3 className="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[color:var(--accent)]">{d.label}</h3>
-                      {d.href ? (
-                        <a href={d.href} className="mt-1 block font-sans text-[0.95rem] text-white hover:text-[color:var(--accent)]">{d.value}</a>
-                      ) : (
-                        <p className="mt-1 font-sans text-[0.95rem] text-white">{d.value}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              {submitted ? (
-                <p className="font-sans text-[0.9rem] text-[color:var(--accent)]">
-                  Thanks! We'll be in touch shortly. For faster service, call {PHONE}.
-                </p>
-              ) : (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setSubmitted(true);
-                  }}
-                  className="font-sans"
-                >
-                  <div className="grid grid-cols-2 gap-3">
-                    <Field label="First Name" name="fname" placeholder="John" />
-                    <Field label="Last Name" name="lname" placeholder="Smith" />
-                  </div>
-                  <Field label="Phone Number" name="phone" type="tel" placeholder="845-555-0100" />
-                  <div className="mb-4">
-                    <label id="contact-service-label" htmlFor="contact-service" className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/80">What do you need?</label>
-                    <select id="contact-service" name="service" aria-labelledby="contact-service-label" className="w-full appearance-none border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white outline-none focus:border-primary">
-
-                      <option value="" disabled>Select a service...</option>
-                      <option>Topsoil Delivery</option>
-                      <option>Loam Delivery</option>
-                      <option>Approved Septic Fill</option>
-                      <option>Septic System Installation</option>
-                      <option>Driveway Installation</option>
-                      <option>Bulk / Wholesale Order</option>
-                      <option>Other</option>
-                    </select>
-                  </div>
-                  <Field label="Approximate Yards Needed" name="yards" placeholder="e.g. 10 yards" />
-                  <div className="mb-4">
-                    <label htmlFor="contact-details" className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/50">Project Details</label>
-                    <textarea id="contact-details" name="details" rows={4} placeholder="Tell us about your project, site location, and timeline..." className="w-full border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-primary" />
-                  </div>
-                  <button type="submit" className="mt-2 flex w-full items-center justify-center gap-2 bg-primary px-8 py-3.5 text-sm font-bold uppercase tracking-wider text-primary-foreground transition hover:bg-[color:var(--primary-dark)]">
-                    Send Message
-                  </button>
-                </form>
-              )}
             </div>
           </div>
         </div>
