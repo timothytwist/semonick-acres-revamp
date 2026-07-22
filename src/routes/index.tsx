@@ -305,7 +305,7 @@ function Index() {
                 <span className="mb-4 inline-block w-fit bg-[color:var(--field)] px-2 py-[3px] font-sans text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-white">
                   {p.tag}
                 </span>
-                <h3 className="mb-2 font-serif text-lg font-bold text-[color:var(--secondary)]">{p.title}</h3>
+                <h2 className="mb-2 font-serif text-lg font-bold text-[color:var(--secondary)]">{p.title}</h2>
                 <p className="font-sans text-sm leading-[1.65] text-muted-foreground">{p.body}</p>
               </div>
             ))}
@@ -324,7 +324,7 @@ function Index() {
           <div className="mt-9 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((s) => (
               <div key={s.title} className="flex flex-col border border-border bg-white p-7 transition hover:border-primary hover:shadow-md">
-                <h3 className="font-serif text-lg font-bold text-[color:var(--secondary)]">{s.title}</h3>
+                <h2 className="font-serif text-lg font-bold text-[color:var(--secondary)]">{s.title}</h2>
                 <p className="mt-2 flex-1 font-sans text-sm leading-[1.65] text-muted-foreground">{s.body}</p>
                 {s.badge && (
                   <span className="mt-4 inline-block w-fit border border-primary px-3 py-1 font-sans text-[0.7rem] font-bold uppercase tracking-[0.1em] text-primary">
@@ -384,7 +384,7 @@ function Index() {
             {why.map((w) => (
               <div key={w.title} className="bg-white p-7">
                 <div className="mb-4 h-1 w-10 bg-primary" />
-                <h3 className="font-serif text-lg font-bold text-[color:var(--secondary)]">{w.title}</h3>
+                <h2 className="font-serif text-lg font-bold text-[color:var(--secondary)]">{w.title}</h2>
                 <p className="mt-2 font-sans text-sm leading-[1.65] text-muted-foreground">{w.body}</p>
               </div>
             ))}
