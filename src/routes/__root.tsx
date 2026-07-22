@@ -77,12 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Semonick Acres Farm — Wholesale Topsoil, Sullivan, Ulster & Orange Counties" },
+      { title: "Semonick Acres — Wholesale Topsoil & Septic Fill" },
       { name: "description", content: "Wholesale organic screened topsoil, approved septic fill, and loam delivered to Sullivan, Ulster, and Orange Counties from Ellenville, NY." },
       { name: "author", content: "Semonick Acres" },
-      { property: "og:title", content: "Semonick Acres Farm — Wholesale Topsoil" },
+      { property: "og:title", content: "Semonick Acres — Wholesale Topsoil" },
       { property: "og:description", content: "Wholesale organic screened topsoil, approved septic fill, and loam. Sullivan · Ulster · Orange Counties. Call 845-551-7345." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://semonickacres.com/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [

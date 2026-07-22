@@ -27,6 +27,17 @@ import {
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "Semonick Acres — Wholesale Topsoil & Septic Fill" },
+      { name: "description", content: "Wholesale organic screened topsoil, approved septic fill, and loam delivered to Sullivan, Ulster, and Orange Counties from Ellenville, NY. $45/yard." },
+      { property: "og:title", content: "Semonick Acres — Wholesale Topsoil" },
+      { property: "og:description", content: "Wholesale organic screened topsoil, approved septic fill, and loam. Sullivan · Ulster · Orange Counties." },
+      { property: "og:url", content: "https://semonickacres.com/" },
+      { property: "og:type", content: "website" },
+    ],
+    links: [{ rel: "canonical", href: "https://semonickacres.com/" }],
+  }),
 });
 
 import { useState } from "react";
@@ -519,8 +530,8 @@ function Index() {
                   </div>
                   <Field label="Phone Number" name="phone" type="tel" placeholder="845-555-0100" />
                   <div className="mb-4">
-                    <label className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/50">What do you need?</label>
-                    <select className="w-full appearance-none border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white outline-none focus:border-primary">
+                    <label htmlFor="contact-service" className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/50">What do you need?</label>
+                    <select id="contact-service" name="service" className="w-full appearance-none border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white outline-none focus:border-primary">
                       <option value="" disabled>Select a service...</option>
                       <option>Topsoil Delivery</option>
                       <option>Loam Delivery</option>
@@ -533,8 +544,8 @@ function Index() {
                   </div>
                   <Field label="Approximate Yards Needed" name="yards" placeholder="e.g. 10 yards" />
                   <div className="mb-4">
-                    <label className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/50">Project Details</label>
-                    <textarea rows={4} placeholder="Tell us about your project, site location, and timeline..." className="w-full border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-primary" />
+                    <label htmlFor="contact-details" className="mb-1.5 block text-[0.72rem] font-semibold uppercase tracking-wider text-white/50">Project Details</label>
+                    <textarea id="contact-details" name="details" rows={4} placeholder="Tell us about your project, site location, and timeline..." className="w-full border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-primary" />
                   </div>
                   <button type="submit" className="mt-2 flex w-full items-center justify-center gap-2 bg-primary px-8 py-3.5 text-sm font-bold uppercase tracking-wider text-primary-foreground transition hover:bg-[color:var(--primary-dark)]">
                     Send Message
