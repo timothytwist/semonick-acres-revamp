@@ -145,16 +145,6 @@ const why = [
   { title: "Approved Materials", body: "Our septic fill meets state approval standards. When your project requires certified materials, we have you covered without the hassle." },
 ];
 
-const faqs = [
-  ["What is the minimum order for delivery?", "The minimum delivery order is 3 cubic yards. This applies to all delivered material within our standard 25-mile service area from Ellenville, NY."],
-  ["How much does delivery cost?", "Topsoil is $45 a yard. Call for a delivery quote. Within 25 miles of Ellenville. For larger orders or extended delivery distances, call us — we work it out on a per-project basis."],
-  ["What counties do you serve?", "We primarily serve Sullivan, Ulster, and Orange Counties within 25 miles of Ellenville, NY. For projects outside that range, call us — we can often accommodate with advance planning."],
-  ["What days do you deliver?", "Deliveries run Monday through Friday. Call ahead to schedule your delivery time and we'll work to fit your project timeline."],
-  ["Do you offer wholesale pricing for contractors?", "Yes. Contractors, developers, and landscapers with ongoing or large-volume needs should call us directly to discuss wholesale pricing. We have relationships with regional contractors and are happy to work out volume arrangements."],
-  ["Is your topsoil screened?", "Yes. Our organic topsoil is screened to ¾\", giving you clean, consistent material free of large debris. It's suitable for lawns, gardens, grading, fill, and construction applications."],
-  ["Do you install septic systems?", "Yes. In addition to supplying approved septic fill, we offer full septic system installation. Call to discuss your project and get a quote."],
-  ["Can you install driveways?", "Yes. We handle driveway installation and grading from prep through final surface. Call for a quote on your project."],
-];
 
 function PhoneIcon({ className }: { className?: string }) {
   return (
