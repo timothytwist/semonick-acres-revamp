@@ -347,48 +347,34 @@ function Index() {
       </section>
 
       {/* REQUEST A QUOTE */}
-      <section id="contact" className="bg-[color:var(--accent)] py-20">
+      <section id="contact" className="bg-muted py-20">
         <div className="mx-auto max-w-[1100px] px-6">
           <SectionLabel>Request a Quote</SectionLabel>
           <h2 className="font-serif text-4xl font-bold md:text-5xl">
             Request a <em className="not-italic text-primary">Quote</em>
           </h2>
           <p className="mt-4 max-w-2xl font-sans text-muted-foreground">
-            <em className="not-italic font-bold text-primary">$45</em> Yard — call for Delivery Quote. 3-yard minimum within 25 miles of Ellenville, NY. Bulk and contractor pricing negotiated over the phone.
+            <em className="not-italic font-bold text-primary">$45</em> Yard — call for Delivery Quote. Bulk and contractor pricing negotiated over the phone.
           </p>
 
           {/* Prominent phone CTA */}
-          <div className="mt-8 flex flex-col items-start gap-4 border-l-[4px] border-primary bg-white p-6 md:flex-row md:items-center md:justify-between">
-            <div>
+          <div className="mt-8 flex flex-col gap-6 border-l-[4px] border-primary bg-card p-6 md:flex-row md:items-center md:justify-between">
+            <div className="min-w-0">
               <div className="font-sans text-[0.72rem] font-bold uppercase tracking-[0.15em] text-muted-foreground">Fastest way to a quote</div>
-              <a href={`tel:${TEL}`} className="mt-1 block font-serif text-3xl font-bold text-primary hover:text-[color:var(--primary-dark)] md:text-4xl">
+              <a href={`tel:${TEL}`} className="mt-1 block font-serif text-4xl font-bold text-primary hover:text-[color:var(--primary-dark)] md:text-5xl">
                 {PHONE}
               </a>
               <div className="mt-1 font-sans text-xs uppercase tracking-wider text-muted-foreground">Mon–Fri · Family Owned · Talk to a real person</div>
             </div>
-            <a href={`tel:${TEL}`} className="inline-flex items-center gap-3 bg-primary px-6 py-4 font-sans text-sm font-bold uppercase tracking-wider text-primary-foreground transition hover:bg-[color:var(--primary-dark)]">
+            <a href={`tel:${TEL}`} className="inline-flex w-full shrink-0 items-center justify-center gap-3 bg-primary px-6 py-4 font-sans text-sm font-bold uppercase tracking-wider text-primary-foreground transition hover:bg-[color:var(--primary-dark)] md:w-auto">
               <PhoneIcon className="h-4 w-4" />
               Call Now
             </a>
           </div>
 
-          <div className="mt-10 grid grid-cols-2 gap-[2px] bg-border md:grid-cols-4">
-            {[
-              ["$45", "Yard — call for quote"],
-              ["3 Yd", "Minimum order"],
-              ["25 mi", "Standard radius"],
-              ["Mon–Fri", "Delivery days"],
-            ].map(([n, l]) => (
-              <div key={l} className="bg-white p-6">
-                <div className="font-serif text-3xl font-bold text-primary">{n}</div>
-                <div className="mt-1 font-sans text-xs uppercase tracking-wider text-muted-foreground">{l}</div>
-              </div>
-            ))}
-          </div>
-
           <div className="mt-14 grid grid-cols-1 items-start gap-14 md:grid-cols-2">
             <div>
-              <h3 className="font-serif text-2xl font-bold text-[color:var(--secondary)]">Prefer to send details?</h3>
+              <h3 className="font-serif text-2xl font-bold text-secondary">Prefer to send details?</h3>
               <p className="mt-3 font-sans text-[0.92rem] leading-[1.7] text-muted-foreground">
                 Fill out the form and we'll get back to you. For faster service — especially for same-week delivery — a phone call is best.
               </p>
