@@ -366,7 +366,7 @@ function Index() {
               </a>
               <div className="mt-1 font-sans text-xs uppercase tracking-wider text-muted-foreground">Mon–Fri · Family Owned · Talk to a real person</div>
             </div>
-            <a href={`tel:${TEL}`} className="inline-flex shrink-0 items-center justify-center gap-3 bg-primary px-6 py-4 font-sans text-sm font-bold uppercase tracking-wider text-primary-foreground transition hover:bg-[color:var(--primary-dark)] md:w-auto">
+            <a href={`tel:${TEL}`} className="inline-flex w-full shrink-0 items-center justify-center gap-3 bg-primary px-6 py-4 font-sans text-sm font-bold uppercase tracking-wider text-primary-foreground transition hover:bg-[color:var(--primary-dark)] md:w-auto">
               <PhoneIcon className="h-4 w-4" />
               Call Now
             </a>
@@ -374,7 +374,7 @@ function Index() {
 
           <div className="mt-14 grid grid-cols-1 items-start gap-14 md:grid-cols-2">
             <div>
-              <h3 className="font-serif text-2xl font-bold text-[color:var(--secondary)]">Prefer to send details?</h3>
+              <h3 className="font-serif text-2xl font-bold text-secondary">Prefer to send details?</h3>
               <p className="mt-3 font-sans text-[0.92rem] leading-[1.7] text-muted-foreground">
                 Fill out the form and we'll get back to you. For faster service — especially for same-week delivery — a phone call is best.
               </p>
