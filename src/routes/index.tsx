@@ -197,12 +197,12 @@ function Index() {
           <ul className="hidden items-center gap-6 md:flex">
             {[
               ["Services", "#services"],
-              ["Gallery", "#gallery"],
-              ["Pricing", "#delivery"],
               ["Calculator", "#calculator"],
-              ["Coverage", "#coverage"],
+              ["Quote", "#contact"],
+              ["Gallery", "#gallery"],
+              ["Why Us", "#why"],
               ["FAQ", "#faq"],
-              ["Contact", "#contact"],
+              ["Coverage", "#coverage"],
             ].map(([label, href]) => (
               <li key={label}>
                 <a href={href} className="font-sans text-[0.82rem] uppercase tracking-[0.06em] text-[color:var(--muted)] transition hover:text-[color:var(--accent)]">
